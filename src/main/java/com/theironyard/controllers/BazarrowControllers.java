@@ -25,25 +25,24 @@ public class BazarrowControllers {
     ItemRepository items;
 
     @RequestMapping("/login")
-    public String login(HttpSession session, HttpServletResponse response, String username, String password) throws Exception {
+    public void login(HttpSession session, HttpServletResponse response, String username, String password) throws Exception {
         User user = users.findOneByUsername(username);
         if (!PasswordHash.validatePassword(password, user.password)) {
-            return "redirect:/create-profile";
+            response.sendRedirect("/create-profile");
         }
-
-        session.setAttribute("username", username);
-
-        return "redirect:/";
+        else {
+            session.setAttribute("username", username);
+            response.sendRedirect("/");
+        }
     }
 
     @RequestMapping("/create-profile")
-    public String createProfile(String username, String password, String location) throws InvalidKeySpecException, NoSuchAlgorithmException {
+    public void createProfile(String username, String password, String location) throws InvalidKeySpecException, NoSuchAlgorithmException {
         User user = new User();
-
         user.name = username;
         user.password = PasswordHash.createHash(password);
         user.location = location;
+        users.save(user);
 
-        return "redirect:/";
     }
 }
