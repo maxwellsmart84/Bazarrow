@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 /**
  * Created by benjamindrake on 11/19/15.
@@ -23,15 +25,25 @@ public class BazarrowControllers {
     ItemRepository items;
 
     @RequestMapping("/login")
-    public User login(HttpSession session, HttpServletResponse response, String username, String password) throws Exception {
+    public String login(HttpSession session, HttpServletResponse response, String username, String password) throws Exception {
         User user = users.findOneByUsername(username);
         if (!PasswordHash.validatePassword(password, user.password)) {
-            throw new Exception("Wrong password.");
+            return "redirect:/create-profile";
         }
 
         session.setAttribute("username", username);
-        response.sendRedirect("/");
 
-        return user;
+        return "redirect:/";
+    }
+
+    @RequestMapping("/create-profile")
+    public String createProfile(String username, String password, String location) throws InvalidKeySpecException, NoSuchAlgorithmException {
+        User user = new User();
+
+        user.name = username;
+        user.password = PasswordHash.createHash(password);
+        user.location = location;
+
+        return "redirect:/";
     }
 }
