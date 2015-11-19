@@ -1,0 +1,40 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/maxwellkrause/.nvm/versions/node/v4.2.0/bin/node',
+1 verbose cli   '/Users/maxwellkrause/.nvm/versions/node/v4.2.0/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'watch' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.0
+4 verbose run-script [ 'prewatch', 'watch', 'postwatch' ]
+5 info prewatch imdb@1.0.0
+6 info watch imdb@1.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info imdb@1.0.0 Failed to exec watch script
+9 verbose stack Error: imdb@1.0.0 watch: `watchify main.js -o bundle.js & ./node_modules/.bin/node-sass sassy.scss styles.css -w`
+9 verbose stack spawn ENOENT
+9 verbose stack     at ChildProcess.<anonymous> (/Users/maxwellkrause/.nvm/versions/node/v4.2.0/lib/node_modules/npm/lib/utils/spawn.js:17:16)
+9 verbose stack     at emitTwo (events.js:87:13)
+9 verbose stack     at ChildProcess.emit (events.js:172:7)
+9 verbose stack     at maybeClose (internal/child_process.js:818:16)
+9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+10 verbose pkgid imdb@1.0.0
+11 verbose cwd /Users/maxwellkrause/Documents/Projects/TIY_Class/Bazarrow/public
+12 error Darwin 14.5.0
+13 error argv "/Users/maxwellkrause/.nvm/versions/node/v4.2.0/bin/node" "/Users/maxwellkrause/.nvm/versions/node/v4.2.0/bin/npm" "run" "watch"
+14 error node v4.2.0
+15 error npm  v2.14.7
+16 error file sh
+17 error code ELIFECYCLE
+18 error errno ENOENT
+19 error syscall spawn
+20 error imdb@1.0.0 watch: `watchify main.js -o bundle.js & ./node_modules/.bin/node-sass sassy.scss styles.css -w`
+20 error spawn ENOENT
+21 error Failed at the imdb@1.0.0 watch script 'watchify main.js -o bundle.js & ./node_modules/.bin/node-sass sassy.scss styles.css -w'.
+21 error This is most likely a problem with the imdb package,
+21 error not with npm itself.
+21 error Tell the author that this fails on your system:
+21 error     watchify main.js -o bundle.js & ./node_modules/.bin/node-sass sassy.scss styles.css -w
+21 error You can get their info via:
+21 error     npm owner ls imdb
+21 error There is likely additional logging output above.
+22 verbose exit [ 1, true ]
