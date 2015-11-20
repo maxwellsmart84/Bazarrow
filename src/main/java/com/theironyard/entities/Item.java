@@ -19,14 +19,17 @@ public class Item {
     public String category;
 
     @Column(nullable = false)
-    public String password;
+    public String itemName;
 
-    @Column(nullable = false)
+   // @Column(nullable = false)
     public String originalName;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     public String name;
 
     @Column(nullable = false)
     public String description;
+
+    @ManyToOne
+    public User user;
 }
