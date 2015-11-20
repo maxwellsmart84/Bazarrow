@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -26,6 +27,19 @@ public class BazarrowControllers {
 
     @Autowired
     ItemRepository items;
+
+    @PostConstruct
+    public void init() throws InvalidKeySpecException, NoSuchAlgorithmException {
+        User user = users.findOneByUsername("Ben");
+        if (user ==  null) {
+            user= new User();
+            user.name = "Ben";
+            user.password = PasswordHash.createHash("wtf");
+            user.location = "location";
+            user.email = "email";
+            users.save(user);
+        }
+    }
 
     @RequestMapping("/login")
     public void login(HttpSession session, HttpServletResponse response, String username, String password) throws Exception {

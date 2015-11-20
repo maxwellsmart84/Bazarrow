@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "bazarrow",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -13,13 +13,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "backbone": "^1.2.3",
+    "bootstrap": "^3.3.5",
     "jquery": "^2.1.4",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "backbone": "^1.2.3",
     "browserify": "^12.0.1",
     "node-sass": "^3.4.2",
+    "serve": "^1.4.0",
     "watchify": "^3.6.1"
   }
 }
