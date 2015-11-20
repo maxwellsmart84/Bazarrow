@@ -3,28 +3,28 @@ var $ = require('jquery');
 Backbone.$ = $;
 var _ = require('underscore');
 var tmpl = require('./templates');
-var GoodsModel = require('./goodsModel');
+var UserModel = require('./userModel');
 
 module.exports = Backbone.View.extend({
-  className: 'addItem',
+  className: 'addLogin',
   model: null, // just here as placeholder, but need a model up on instantiation
   events: {
     'submit form': 'submitForm'
   },
   initialize: function () {
     if(!this.model) {
-      this.model = new GoodsModel();
+      this.model = new UserModel();
     }
   },
   submitForm: function (event) {
     event.preventDefault();
-    var newItem = {
-      image: this.$el.find('input[name="item_image"]').val(),
-      title: this.$el.find('input[name="title"]').val(),
-      description: this.$el.find('input[name="description"]').val(),
-      available: this.$el.find('input[name="available"]').val(),
+    var newUser = {
+      image: this.$el.find('input[name="user_image"]').val(),
+      username: this.$el.find('input[name="username"]').val(),
+      rating: this.$el.find('input[name="rating"]').val(),
+      location: this.$el.find('input[name="location"]').val(),
     };
-    this.model.set(newItem);
+    this.model.set(newUser);
     this.model.save();
     this.$el.find('input').val('');
   },
