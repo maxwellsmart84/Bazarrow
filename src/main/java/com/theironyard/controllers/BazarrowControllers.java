@@ -65,7 +65,7 @@ public class BazarrowControllers {
     }
 
     @RequestMapping("/create-item")
-    public void createItem(HttpSession session, String username, String itemName, String category, String description) throws Exception {
+    public void createItem(HttpSession session, String username, String itemName, String category, String description, boolean isNeeded) throws Exception {
         User user = users.findOneByUsername(username);
         if (user == null){
             throw new Exception("Not Logged it");
@@ -74,6 +74,7 @@ public class BazarrowControllers {
         item.user = user;
         item.itemName = itemName;
         item.category = category;
+        item.isNeeded = isNeeded;
         item.description = description;
         items.save(item);
 
@@ -85,8 +86,13 @@ public class BazarrowControllers {
     }
 
     @RequestMapping("/items")
-    public List<Item> getItems(){
+    public List<Item> getItems(String category){
+        if (category != null) {
+             return (List<Item>)items.findAllByCategory(category);
+        }
         return (List<Item>)items.findAll();
     }
+
+
 
 }
