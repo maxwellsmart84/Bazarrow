@@ -33,7 +33,7 @@ public class BazarrowControllers {
         User user = users.findOneByUsername("Ben");
         if (user ==  null) {
             user= new User();
-            user.name = "Ben";
+            user.username = "Ben";
             user.password = PasswordHash.createHash("wtf");
             user.location = "location";
             user.email = "email";
@@ -56,7 +56,7 @@ public class BazarrowControllers {
     @RequestMapping("/create-profile")
     public void createProfile(HttpServletResponse response, String username, String password, String location, String email) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
         User user = new User();
-        user.name = username;
+        user.username = username;
         user.password = PasswordHash.createHash(password);
         user.location = location;
         user.email = email;
