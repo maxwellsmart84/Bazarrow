@@ -22,5 +22,8 @@ public class User {
     @Column(nullable = false)
     public String location;
 
+    @Column(nullable = false)
+    public String email;
+
 
 }

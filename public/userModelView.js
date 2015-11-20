@@ -1,17 +1,25 @@
 var Backbone = require('backbone');
+var UserModel = require('./userModel');
+var _ = require('underscore');
 var $ = require('jquery');
 Backbone.$ = $;
-var _ = require('underscore');
 var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
-  initialize: function () {},
+  tagName: 'section',
+  className: 'user',
   template: _.template(tmpl.user),
+  events: {
+
+  },
+  initialize: function () {
+
+  },
+
   render: function () {
-    var markup = this.template({});
+    console.log(this.model);
+    var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
-    // in order to call .el off of render we need to return this
-    // bookViewInstance.render().el - yields all markup and data from model
     return this;
-  }
+  },
 });
