@@ -44,7 +44,7 @@ var Backbone = require('backbone');
 var GoodsModel = require('./goodsModel');
 
 module.exports = Backbone.Collection.extend({
-  url: '/items',
+  url: 'http://tiny-tiny.herokuapp.com/collections/bazarrow',
   model: GoodsModel
 });
 
@@ -75,7 +75,7 @@ module.exports = Backbone.View.extend({
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: '/create-item',
+  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/bazarrow',
   idAttribute: '_id',
   defaults: function (){
     return {
@@ -207,29 +207,32 @@ module.exports = Backbone.View.extend({
     var goodsHTML = new GoodsView();
     var postHTML = new PostView();
 
+
+// lines 33-52 need to be updated with the content that we need on our page
+
     var goodsCollection = new GoodsCollection();
     goodsCollection.fetch().then(function () {
       var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
       // self.$el.find('section').html()
-      self.$el.find('header').html(headerHTML.render().el);
       self.$el.find('.submit-section').html(formHTML.render().el);
+      self.$el.find('.goods').html(goodsHTML.render().el);
     });
 
-    var userCollection = new UserCollection();
-    userCollection.fetch().then(function () {
-      var userCollectionView = new UserCollectionView({collection: userCollection});
-      // self.$el.find('section').html()
-      self.$el.find('header').html(headerHTML.render().el);
-      self.$el.find('.submit-section').html(formHTML.render().el);
-    });
-
-    var postCollection = new PostCollection();
-    postCollection.fetch().then(function () {
-      var postCollectionView = new PostCollectionView({collection: postCollection});
-      // self.$el.find('section').html()
-      self.$el.find('header').html(headerHTML.render().el);
-      self.$el.find('.submit-section').html(formHTML.render().el);
-    });
+    // var userCollection = new UserCollection();
+    // userCollection.fetch().then(function () {
+    //   var userCollectionView = new UserCollectionView({collection: userCollection});
+    //   // self.$el.find('section').html()
+    //   self.$el.find('header').html(headerHTML.render().el);
+    //   self.$el.find('.submit-section').html(formHTML.render().el);
+    // });
+    //
+    // var postCollection = new PostCollection();
+    // postCollection.fetch().then(function () {
+    //   var postCollectionView = new PostCollectionView({collection: postCollection});
+    //   // self.$el.find('section').html()
+    //   self.$el.find('header').html(headerHTML.render().el);
+    //
+    // });
   }
 
 });
@@ -12962,7 +12965,7 @@ var Backbone = require('backbone');
 var PostModel = require('./postModel');
 
 module.exports = Backbone.Collection.extend({
-  url: '/items',
+  url: 'http://tiny-tiny.herokuapp.com/collections/bazarrow',
   model: PostModel
 });
 
@@ -12993,13 +12996,12 @@ module.exports = Backbone.View.extend({
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: '/items',
+  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/bazarrow',
   idAttribute: '_id',
   defaults: function (){
     return {
-      image: "http://www.fulton58.org/pages/uploaded_images/Nike-Vapor-Elite-Airlock-Size-9-Football-FT0210_201_A.jpg",
+      userImage: "http://www.fulton58.org/pages/uploaded_images/Nike-Vapor-Elite-Airlock-Size-9-Football-FT0210_201_A.jpg",
       title: "Football",
-      description: "Brown Pig-skin Football"
     };
   },
   initialize: function () {
@@ -13008,8 +13010,55 @@ module.exports = Backbone.Model.extend({
 });
 
 },{"backbone":11}],18:[function(require,module,exports){
+var Backbone = require('backbone');
+var UserModel = require('./userModel');
+var _ = require('underscore');
+var $ = require('jquery');
+Backbone.$ = $;
+var tmpl = require('./templates');
 
-},{}],19:[function(require,module,exports){
+module.exports = Backbone.View.extend({
+  tagName: 'section',
+  className: 'post',
+  template: _.template(tmpl.post),
+  events: {
+    'click .delete': 'deleteItem',
+    'click .edit': 'edit',
+    'submit .editted': 'editItem'
+  },
+  initialize: function () {
+
+  },
+  deleteItem : function() {
+   this.model.destroy();
+   this.remove();
+ },
+ edit: function(e){
+    e.preventDefault();
+    this.$('.editted').toggleClass('hidden');
+  },
+ editItem: function(event){
+   event.preventDefault();
+   var editText = this.model;
+   editText.set({
+     image: this.$el.find('input[name="item_image"]').val(),
+     title: this.$el.find('input[name="title"]').val(),
+     description: this.$el.find('input[name="description"]').val(),
+     available: this.$el.find('input[name="available"]').val(),
+   });
+   $('.editted').addClass('hidden');
+    editText.save();
+    this.render();
+  },
+  render: function () {
+    console.log(this.model);
+    var markup = this.template(this.model.toJSON());
+    this.$el.html(markup);
+    return this;
+  },
+});
+
+},{"./templates":20,"./userModel":23,"backbone":11,"jquery":13,"underscore":14}],19:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -13065,7 +13114,7 @@ var Backbone = require('backbone');
 var UserModel = require('./userModel');
 
 module.exports = Backbone.Collection.extend({
-  url: '/create-profile',
+  url: 'http://tiny-tiny.herokuapp.com/collections/bazarrow',
   model: UserModel
 });
 
