@@ -9,3 +9,9 @@ $( ".s-loginBtn" ).on( "click", function() {
   $('.signUpDiv').addClass('hide');
   $('.loginDiv').removeClass('hide');
 });
+
+var layoutView = require('./layoutView');
+
+$(function () {
+  new layoutView();
+})

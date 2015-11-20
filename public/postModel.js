@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/bazarrow',
+  urlRoot: '/items',
   idAttribute: '_id',
   defaults: function (){
     return {
