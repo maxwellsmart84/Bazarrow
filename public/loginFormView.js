@@ -21,8 +21,9 @@ module.exports = Backbone.View.extend({
     var newUser = {
       image: this.$el.find('input[name="user_image"]').val(),
       username: this.$el.find('input[name="username"]').val(),
-      rating: this.$el.find('input[name="rating"]').val(),
       location: this.$el.find('input[name="location"]').val(),
+      email: this.$el.find('input[name="email"]').val(),
+      password: this.$el.find('input[name="password"]').val()
     };
     this.model.set(newUser);
     this.model.save();
