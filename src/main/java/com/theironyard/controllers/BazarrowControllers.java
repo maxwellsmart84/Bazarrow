@@ -1,5 +1,6 @@
 package com.theironyard.controllers;
 
+import com.theironyard.entities.Item;
 import com.theironyard.entities.User;
 import com.theironyard.services.ItemRepository;
 import com.theironyard.services.UserRepository;
@@ -39,11 +40,12 @@ public class BazarrowControllers {
     }
 
     @RequestMapping("/create-profile")
-    public void createProfile(HttpServletResponse response, String username, String password, String location) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
+    public void createProfile(HttpServletResponse response, String username, String password, String location, String email) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
         User user = new User();
         user.name = username;
         user.password = PasswordHash.createHash(password);
         user.location = location;
+        user.email = email;
         users.save(user);
         response.sendRedirect("/");
     }
@@ -51,6 +53,11 @@ public class BazarrowControllers {
     @RequestMapping("/users")
     public List<User>getUsers(){
         return (List<User>)users.findAll();
+    }
+
+    @RequestMapping("/items")
+    public List<Item> getItems(){
+        return (List<Item>)items.findAll();
     }
 
 }
