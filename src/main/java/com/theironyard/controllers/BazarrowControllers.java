@@ -64,6 +64,21 @@ public class BazarrowControllers {
         response.sendRedirect("/");
     }
 
+    @RequestMapping("/create-item")
+    public void createItem(HttpSession session, String username, String itemName, String category, String description) throws Exception {
+        User user = users.findOneByUsername(username);
+        if (user == null){
+            throw new Exception("Not Logged it");
+        }
+        Item item = new Item();
+        item.user = user;
+        item.itemName = itemName;
+        item.category = category;
+        item.description = description;
+        items.save(item);
+
+    }
+
     @RequestMapping("/users")
     public List<User>getUsers(){
         return (List<User>)users.findAll();
