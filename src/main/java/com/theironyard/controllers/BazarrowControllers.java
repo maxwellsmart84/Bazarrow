@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.List;
 
 /**
  * Created by benjamindrake on 11/19/15.
@@ -25,25 +27,30 @@ public class BazarrowControllers {
     ItemRepository items;
 
     @RequestMapping("/login")
-    public String login(HttpSession session, HttpServletResponse response, String username, String password) throws Exception {
+    public void login(HttpSession session, HttpServletResponse response, String username, String password) throws Exception {
         User user = users.findOneByUsername(username);
         if (!PasswordHash.validatePassword(password, user.password)) {
-            return "redirect:/create-profile";
+            response.sendRedirect("/create-profile");
         }
-
-        session.setAttribute("username", username);
-
-        return "redirect:/";
+        else {
+            session.setAttribute("username", username);
+            response.sendRedirect("/");
+        }
     }
 
     @RequestMapping("/create-profile")
-    public String createProfile(String username, String password, String location) throws InvalidKeySpecException, NoSuchAlgorithmException {
+    public void createProfile(HttpServletResponse response, String username, String password, String location) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
         User user = new User();
-
         user.name = username;
         user.password = PasswordHash.createHash(password);
         user.location = location;
-
-        return "redirect:/";
+        users.save(user);
+        response.sendRedirect("/");
     }
+
+    @RequestMapping("/users")
+    public List<User>getUsers(){
+        return (List<User>)users.findAll();
+    }
+
 }
