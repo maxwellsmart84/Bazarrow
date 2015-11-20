@@ -70,3 +70,12 @@ body {
 
 .form-control {
   margin-bottom: 2%; }
+
+header {
+  margin-top: -20px; }
+  header h3 {
+    background-color: #00477B;
+    color: white;
+    padding: 3%;
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 2.5em; }
