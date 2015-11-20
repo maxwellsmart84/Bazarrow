@@ -1,0 +1,1 @@
+console.error("Error: SyntaxError: Unexpected token < while parsing json file /Users/joshguion/theIronYard/Bazarrow/public/package.json");
