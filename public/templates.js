@@ -15,16 +15,16 @@ module.exports = {
     "<h1>Looking for: <span class = '.lookingFor'></span></h1>",
   ].join(""),
   userForm: [
-    "<form>",
-      "<input type='text' name='loginName' placeholder='Username'></input>",
-      "<input type='password' name='password'></input>",
-      "<input type='email' name='email'></input>",
-      "<input type='file' name='profileimg' accept='/*'></input>",
-    "</form>"
-  ].join(""),
+  "<form>",
+    "<input type='text' name='loginName' placeholder='Username'></input>",
+    "<input type='password' name='password'></input>",
+    "<input type='email' name='email'></input>",
+    "<input type='file' name='profileimg' accept='/*'></input>",
+  "</form>"
+].join(""),
   postForm: [
     "<form>",
-      "<input type = 'text' name= 'postItem' placeholder='What are you looking for?'></input>",
+      "<input class='lookingFor' type = 'text' name= 'postItem' placeholder='What are you looking for?'></input>",
     "</form>"
   ],
 };
