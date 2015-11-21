@@ -104,6 +104,16 @@ public class BazarrowControllers {
         response.sendRedirect("/");
     }
 
+    @RequestMapping("/delete-user")
+    public void deleteUser(int id){
+        users.delete(id);
+    }
+
+    @RequestMapping("/delete-item")
+    public void deleteItem(int id) {
+        items.delete(id);
+    }
+
 
 
 }

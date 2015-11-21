@@ -21,11 +21,8 @@ public class Item {
     @Column(nullable = false)
     public String itemName;
 
-   // @Column(nullable = false)
-    //public String originalName;
-
-    //@Column(nullable = false)
-    //public String name;
+    @Column(nullable = false)
+    public String photoName;
 
     @Column(nullable = false)
     public String description;
