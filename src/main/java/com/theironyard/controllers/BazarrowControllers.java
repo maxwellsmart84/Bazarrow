@@ -30,14 +30,21 @@ public class BazarrowControllers {
 
     @PostConstruct
     public void init() throws InvalidKeySpecException, NoSuchAlgorithmException {
-        User user = users.findOneByUsername("Ben");
-        if (user ==  null) {
-            user= new User();
+        if (users.count() >0) {
+            return;
+        }else {
+            User user = new User();
             user.username = "Ben";
             user.password = PasswordHash.createHash("wtf");
             user.location = "location";
             user.email = "email";
             users.save(user);
+            Item item = new Item();
+            item.itemName = "Dank bike";
+            item.description = "The dankiest of bikes";
+            item.category = "Dank sports";
+            item.user = users.findOneByUsername("Ben");
+            items.save(item);
         }
     }
 
@@ -87,9 +94,6 @@ public class BazarrowControllers {
 
     @RequestMapping("/items")
     public List<Item> getItems(String category){
-        if (category != null) {
-             return (List<Item>)items.findAllByCategory(category);
-        }
         return (List<Item>)items.findAll();
     }
 
