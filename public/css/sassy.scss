@@ -87,7 +87,7 @@ body {
 
 ///////////////////////////////////////////////// - Profile Page
 
-header {
+.profileHeader {
   margin-top: -20px;
   h3 {
     background-color: #00477B;
@@ -192,6 +192,86 @@ header {
 }
 
 
+////////////////////////////////////////////////////////// - Market
+
+#market {
+
+}
+
+#marketHeader {
+  margin-top: -20px;
+  h2 {
+    text-align: center;
+    margin-top: -6%;
+    font-size: 3em;
+    color: white;
+    font-family: 'Berkshire Swash', cursive;
+  }
+  h3 {
+    background-color: #00477B;
+    color: white;
+    padding: 1.5% 5%;
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 2.5em;
+    border-bottom: 2px solid #CCCCCC;
+  }
+  .marketSpan {
+    background: white;
+    padding: .5%;
+    border-radius: 4px;
+    color: #00467D;
+  }
+  #marketHeaderNav {
+    list-style: none;
+    ul {
+      position: relative;
+      left: 78%;
+      top: -40px;
+    }
+    li {
+      display: inline-block;
+      padding: 0 1%;
+      color: white;
+      font-family: 'PT Sans', sans-serif;
+      font-size: 1.25em;
+    }
+  }
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+.marketTitle {
+  background: white;
+  padding: 1%;
+  margin: 0 0 5% 13%;
+  box-shadow: 1px 1px #CCCCCC;
+}
+.marketAddItem {
+  background: white;
+  float: right;
+  margin: -3% 17% 0 0;
+  padding: .5%;
+  box-shadow: 1px 1px #CCCCCC;
+  font-size: .75em;
+}
+.marketList {
+  width: 70%;
+  background: white;
+  margin: 10px 0 1% 13%;
+  box-shadow: 1px 1px #CCCCCC;
+  div {
+    display: inline-block;
+  }
+  .marketProfPic {
+    padding: 2% 0 2% 4%;
+  }
+}
+#marketItemPic {
+  width: 50px;
+  height: 50px;
+  background-size: auto;
+}
 
 
 
@@ -200,7 +280,7 @@ header {
 ////////////////////////////////////////////////////////// - Footer
 
 
-footer {
+.profileFooter {
   background: #00467D;
   h3 {
     color: white;
