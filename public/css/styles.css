@@ -96,15 +96,38 @@ body {
 .avatar img {
   margin-left: 15%; }
 
+.profileInfo {
+  background: white;
+  height: 250px;
+  width: 60%;
+  margin-left: 5%;
+  box-shadow: 1px 1px #CCCCCC; }
+  .profileInfo ul li {
+    list-style: none;
+    margin-right: 10%; }
+    .profileInfo ul li h3 {
+      border-bottom: 1px solid #CCCCCC;
+      padding: 2% 2% 2% 0; }
+    .profileInfo ul li h5 {
+      margin-top: 2%; }
+
 .liSpan {
   border-radius: 4px;
-  padding: 1%; }
+  padding: 1% 1% 1% 0; }
 
-.profile div {
-  display: inline-block;
-  width: 45%;
-  vertical-align: top;
-  text-align: center; }
+.profile {
+  margin-left: 7%; }
+  .profile div {
+    display: inline-block;
+    vertical-align: top; }
+
+.profileAddItem {
+  background: white;
+  padding: 1%;
+  float: right;
+  margin-right: 25%;
+  margin-top: -3.5%;
+  box-shadow: 1px 1px #CCCCCC; }
 
 .myItems {
   width: 100%;

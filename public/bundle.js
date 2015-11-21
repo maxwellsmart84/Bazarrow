@@ -13084,13 +13084,11 @@ module.exports = {
     '<div class="avatar">',
       // '<img src="<%= file %>" />',
     '</div>',
-    '<div class="profileInfo">',
       '<ul>',
         '<li><h3><span class="liSpan"><%= username %></span></h3></li>',
         '<li><h3><span class="liSpan"><%= location %></span></h3></li>',
         '<li><h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h5></li>',
       '</ul>',
-    '</div>',
   ].join(""),
   goods: [
     '<div class="itemsList">',
@@ -13194,7 +13192,7 @@ var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
   tagName: 'div',
-  className: 'profileInfo',
+  className: '',
   template: _.template(tmpl.user),
   events: {
 
