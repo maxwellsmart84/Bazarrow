@@ -6,9 +6,9 @@
   "scripts": {
     "bundle": "./node_modules/.bin/browserify main.js -o bundle.js",
     "watch": "./node_modules/.bin/watchify main.js -o bundle.js & ./node_modules/.bin/node-sass css/sassy.scss css/styles.css -w",
-    "serve": "./node_modules/.bin/serve",
+    "serve": "java -jar Bazarrow-0.0.1-SNAPSHOT.jar",
     "sass": "./node_modules/.bin/node-sass css/sassy.scss css/styles.css",
-    "start": "npm run watch & npm run serve"
+    "start": "cd ../ && java -jar Bazarrow-0.0.1-SNAPSHOT.jar & cd public/ && npm run watch"
   },
   "author": "",
   "license": "ISC",

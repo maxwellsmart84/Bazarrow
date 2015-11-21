@@ -70,3 +70,92 @@ body {
 
 .form-control {
   margin-bottom: 2%; }
+
+header {
+  margin-top: -20px; }
+  header h3 {
+    background-color: #00477B;
+    color: white;
+    padding: 1.5% 5%;
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 2.5em;
+    border-bottom: 2px solid #CCCCCC; }
+  header .headerNav {
+    list-style: none; }
+    header .headerNav ul {
+      position: relative;
+      left: 78%;
+      top: -55px; }
+    header .headerNav li {
+      display: inline-block;
+      padding: 0 1%;
+      color: white;
+      font-family: 'PT Sans', sans-serif;
+      font-size: 1.25em; }
+
+.avatar img {
+  margin-left: 15%; }
+
+.profileInfo {
+  background: white;
+  height: 250px;
+  box-shadow: 1px 1px #CCCCCC; }
+  .profileInfo ul li {
+    list-style: none;
+    margin-bottom: 5%;
+    margin-right: 10%; }
+    .profileInfo ul li h3 {
+      border-bottom: 1px solid #CCCCCC;
+      padding: 2%; }
+    .profileInfo ul li h5 {
+      margin-top: 10%; }
+
+.liSpan {
+  border-radius: 4px;
+  padding: 1%; }
+
+.profile div {
+  display: inline-block;
+  width: 45%;
+  vertical-align: top; }
+
+.myItems {
+  width: 100%;
+  margin: 10% 0 2% 11%; }
+  .myItems h2 span {
+    background: white;
+    padding: 2%;
+    box-shadow: 1px 1px #CCCCCC; }
+
+.itemsList {
+  width: 75%;
+  display: block;
+  background: white;
+  margin-left: 11%;
+  margin-top: 3%;
+  box-shadow: 1px 1px #CCCCCC; }
+  .itemsList img {
+    max-width: 120px;
+    max-height: 120px;
+    margin: 5% 0 0 4%; }
+  .itemsList ul {
+    position: relative;
+    left: 18%;
+    top: -135px;
+    width: 80%; }
+  .itemsList li {
+    list-style: none; }
+
+footer {
+  background: #00467D; }
+  footer h3 {
+    color: white;
+    padding: 2%;
+    text-align: center;
+    font-size: 1.75em;
+    font-family: 'Berkshire Swash', cursive; }
+    footer h3 .footerSpan {
+      background: white;
+      border-radius: 4px;
+      padding: .75%;
+      color: #00477B; }
