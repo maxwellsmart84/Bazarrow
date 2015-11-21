@@ -120,39 +120,51 @@ body {
   }
 }
 
-// .profileInfo {
-//   background: white;
-//   height: 250px;
-//   box-shadow: 1px 1px #CCCCCC;
-//   ul{
-//     li {
-//       list-style: none;
-//       margin-bottom: 5%;
-//       margin-right: 10%;
-//       h3 {
-//         border-bottom: 1px solid #CCCCCC;
-//         padding: 2%;
-//       }
-//       h5 {
-//         margin-top: 10%;
-//       }
-//     }
-//   }
-// }
+.profileInfo {
+  background: white;
+  height: 250px;
+  width: 60%;
+  margin-left: 5%;
+  box-shadow: 1px 1px #CCCCCC;
+  ul{
+
+    li {
+      list-style: none;
+      // margin-bottom: 5%;
+      margin-right: 10%;
+
+      h3 {
+        border-bottom: 1px solid #CCCCCC;
+        padding: 2% 2% 2% 0;
+      }
+      h5 {
+        margin-top: 2%;
+      }
+    }
+  }
+}
 .liSpan {
   border-radius: 4px;
-  padding: 1%;
+  padding: 1% 1% 1% 0;
 }
 
 .profile {
+  margin-left: 7%;
   div {
     display: inline-block;
-    width: 45%;
     vertical-align: top;
-    text-align: center;
+    // text-align: center;
   }
 }
 
+.profileAddItem {
+  background: white;
+  padding: 1%;
+  float: right;
+  margin-right: 25%;
+  margin-top: -3.5%;
+  box-shadow: 1px 1px #CCCCCC;
+}
 
 
 ////////////////////////////////////////////////////////// - Profile Items

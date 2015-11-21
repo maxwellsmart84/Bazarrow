@@ -7,7 +7,7 @@ var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
   tagName: 'div',
-  className: 'profileInfo',
+  className: '',
   template: _.template(tmpl.user),
   events: {
 
