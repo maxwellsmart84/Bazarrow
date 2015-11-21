@@ -30,6 +30,8 @@ public class Item {
     @Column(nullable = false)
     public String description;
 
+    public boolean isNeeded;
+
     @ManyToOne
     public User user;
 }

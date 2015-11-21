@@ -1,6 +1,7 @@
 package com.theironyard.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by benjamindrake on 11/19/15.
@@ -24,6 +25,9 @@ public class User {
 
     @Column(nullable = false)
     public String email;
+
+    @OneToMany(mappedBy = "user")
+    public List<Item> items;
 
 
 }
