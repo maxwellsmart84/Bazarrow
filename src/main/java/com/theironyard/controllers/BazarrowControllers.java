@@ -40,9 +40,10 @@ public class BazarrowControllers {
             user.email = "email";
             users.save(user);
             Item item = new Item();
-            item.itemName = "Dank bike";
-            item.description = "The dankiest of bikes";
+            item.itemName = "Dank bike helmet";
+            item.description = "The dankiest of bike helmets";
             item.category = "Dank sports";
+            item.photoName = "tinfoil'.jpeg";
             item.user = users.findOneByUsername("Ben");
             items.save(item);
         }
