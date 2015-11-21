@@ -22,14 +22,15 @@ public class Item {
     public String itemName;
 
    // @Column(nullable = false)
-    public String originalName;
+    //public String originalName;
 
     //@Column(nullable = false)
-    public String name;
+    //public String name;
 
     @Column(nullable = false)
     public String description;
 
+    @Column(nullable = false)
     public boolean isNeeded;
 
     @ManyToOne
