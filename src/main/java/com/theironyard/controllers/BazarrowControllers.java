@@ -93,6 +93,12 @@ public class BazarrowControllers {
         return (List<Item>)items.findAll();
     }
 
+    @RequestMapping("/logout")
+    public void logout(HttpSession session, HttpServletResponse response) throws IOException {
+        session.invalidate();
+        response.sendRedirect("/");
+    }
+
 
 
 }

@@ -1,12 +1,15 @@
 module.exports = {
-  profile: [
+  header: [
+    "<h1>hello world</h1>"
+  ].join(""),
+  user: [
     '<div class="avatar">',
-      '<img src="<%= file %>" />',
+      // '<img src="<%= file %>" />',
     '</div>',
     '<div class="profileInfo">',
       '<ul>',
         '<li><h3><span class="liSpan"><%= username %></span></h3></li>',
-        '<li><h3><span class="liSpan"><%= location &></span></h3></li>',
+        '<li><h3><span class="liSpan"><%= location %></span></h3></li>',
         '<li><h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h5></li>',
       '</ul>',
     '</div>',
@@ -15,8 +18,8 @@ module.exports = {
     '<div class="itemsList">',
       '<img src="https://c1.staticflickr.com/3/2908/13882081334_ce71319389_b.jpg" alt="">',
       '<ul>',
-        '<li><h2><%= title %></h2></li>',
-        '<li><h3><%= available %></h3></li>',
+        // '<li><h2><%= title %></h2></li>',
+        // '<li><h3><%= available %></h3></li>',
         "<li>Superman's infamous backwards-speaking bad guy. Measures 6.75 high. Exceptional detail. Limited edition!</li>",
       '</ul>',
     '</div>',
@@ -25,7 +28,7 @@ module.exports = {
     "<img src = '<%= profileimg %>>",
     "<h1>Looking for: <span class = '.lookingFor'></span></h1>",
   ].join(""),
-  userForm: [
+  loginForm: [
   '<form class="loginForm" action="index.html" method="post">',
     "<input type='text' name='loginName' placeholder='Username'></input>",
     '<input type="password" class="form-control loginPassword" name="name" value="" placeholder="Password>',

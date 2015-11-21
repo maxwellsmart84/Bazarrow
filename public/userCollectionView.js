@@ -7,7 +7,7 @@ Backbone.$ = $;
 
 
 module.exports = Backbone.View.extend({
-  el: '#page',
+  el: '.container profile',
   initialize: function () {
     this.addAll();
   },
@@ -18,4 +18,4 @@ module.exports = Backbone.View.extend({
   addAll: function () {
     _.each(this.collection.models, this.addOne, this);
   }
-})
+});

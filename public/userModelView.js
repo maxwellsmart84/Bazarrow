@@ -6,8 +6,8 @@ Backbone.$ = $;
 var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
-  tagName: 'section',
-  className: 'user',
+  tagName: 'div',
+  className: 'container profile',
   template: _.template(tmpl.user),
   events: {
 
