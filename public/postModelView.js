@@ -8,7 +8,7 @@ var tmpl = require('./templates');
 module.exports = Backbone.View.extend({
   tagName: 'section',
   className: 'post',
-  template: _.template(tmpl.post),
+  template: _.template(tmpl.posts),
   events: {
     'click .delete': 'deleteItem',
     'click .edit': 'edit',

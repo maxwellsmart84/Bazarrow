@@ -38,14 +38,14 @@ module.exports = Backbone.View.extend({
       self.$el.find('.goods').html(goodsHTML.render().el);
     });
 
-    // var userCollection = new UserCollection();
-    // userCollection.fetch().then(function () {
-    //   var userCollectionView = new UserCollectionView({collection: userCollection});
-    //   // self.$el.find('section').html()
-    //   self.$el.find('header').html(headerHTML.render().el);
-    //   self.$el.find('.submit-section').html(formHTML.render().el);
-    // });
-    //
+    var userCollection = new UserCollection();
+    userCollection.fetch().then(function () {
+      var userCollectionView = new UserCollectionView({collection: userCollection});
+      // self.$el.find('section').html()
+      self.$el.find('header').html(headerHTML.render().el);
+      self.$el.find('.submit-section').html(formHTML.render().el);
+    });
+
     // var postCollection = new PostCollection();
     // postCollection.fetch().then(function () {
     //   var postCollectionView = new PostCollectionView({collection: postCollection});

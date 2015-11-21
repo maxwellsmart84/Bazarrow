@@ -14,4 +14,4 @@ var layoutView = require('./layoutView');
 
 $(function () {
   new layoutView();
-})
+});
