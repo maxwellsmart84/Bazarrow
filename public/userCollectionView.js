@@ -7,7 +7,7 @@ Backbone.$ = $;
 
 
 module.exports = Backbone.View.extend({
-  el: '.container profile',
+  el: '.profileInfo',
   initialize: function () {
     this.addAll();
   },

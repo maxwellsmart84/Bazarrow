@@ -32,11 +32,8 @@ $( ".homeBtn" ).on( "click", function() {
   $('#market').addClass('hide');
 });
 
+var layoutView = require('./layoutView');
 
 $(function () {
-  new Router();
-  Backbone.history.start();
-  new LoginFormView();
-  // new layoutView();
-
+ new layoutView();
 });

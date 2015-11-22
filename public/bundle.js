@@ -191,7 +191,7 @@ module.exports = Backbone.View.extend({
    goodsCollection.fetch().then(function () {
      var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
      // self.$el.find('section').html()
-     self.$el.find('.myItems').html(formHTML.render().el);
+     self.$el.find('.addItemMenu').html(formHTML.render().el);
      self.$el.find('.itemsList').html(goodsHTML.render().el);
    });
 
@@ -321,13 +321,10 @@ $( ".homeBtn" ).on( "click", function() {
   $('#market').addClass('hide');
 });
 
+var layoutView = require('./layoutView');
 
 $(function () {
-  new Router();
-  Backbone.history.start();
-  new LoginFormView();
-  // new layoutView();
-
+ new layoutView();
 });
 
 },{"./layoutView":7,"./router":19,"backbone":11,"jquery":12}],10:[function(require,module,exports){
@@ -13207,7 +13204,7 @@ module.exports = {
         '<button type="submit" name="button">Submit</button>',
       '</form>',
     '</div>',
-    '<div class="itemsList">',
+    '<div class="goodsItems">',
         '<img src="<%= photoName %>" alt="">',
         '<ul>',
           '<li><h2><%= itemName %></h2></li>',
@@ -13238,14 +13235,12 @@ module.exports = {
     '</form>'
   ].join(""),
   goodsForm: [
-    '<div class="addItemMenu hide">',
      '<form class="addItemForm" action="index.html" method="post">',
        '<input type="text" class="form-control itemInputTitle" name="title"  placeholder="Title">',
        '<input type="picture" class="form-control itemInputPicture" name="itemPicture"  placeholder="Item Picture">',
        '<input type="text" class="form-control itemInputDescription" name="itemDescription"  placeholder="Description">',
        '<button type="submit" name="button">Submit</button>',
      '</form>',
-   '</div>',
  ].join(""),
   postForm: [
     '<form class="addMarketItemForm hide" action="index.html" method="post">',
@@ -13277,7 +13272,7 @@ Backbone.$ = $;
 
 
 module.exports = Backbone.View.extend({
-  el: '.container profile',
+  el: '.profileInfo',
   initialize: function () {
     this.addAll();
   },
@@ -13318,7 +13313,7 @@ var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
   tagName: 'div',
-  className: 'container profile',
+  className: '',
   template: _.template(tmpl.user),
   events: {
 
