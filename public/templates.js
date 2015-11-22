@@ -21,11 +21,11 @@ module.exports = {
         '<button type="submit" name="button">Submit</button>',
       '</form>',
     '</div>',
-    '<div class="itemsList">',
+    '<div class="goodsItems">',
         '<img src="<%= photoName %>" alt="">',
         '<ul>',
           '<li><h2><%= itemName %></h2></li>',
-          "<li><h2><%= description %></li>",
+          "<li><p><%= description %></p></li>",
         '</ul>',
     '</div>',
   ].join(""),
@@ -52,14 +52,12 @@ module.exports = {
     '</form>'
   ].join(""),
   goodsForm: [
-    '<div class="addItemMenu hide">',
      '<form class="addItemForm" action="index.html" method="post">',
        '<input type="text" class="form-control itemInputTitle" name="title"  placeholder="Title">',
        '<input type="picture" class="form-control itemInputPicture" name="itemPicture"  placeholder="Item Picture">',
        '<input type="text" class="form-control itemInputDescription" name="itemDescription"  placeholder="Description">',
        '<button type="submit" name="button">Submit</button>',
      '</form>',
-   '</div>',
  ].join(""),
   postForm: [
     '<form class="addMarketItemForm hide" action="index.html" method="post">',
