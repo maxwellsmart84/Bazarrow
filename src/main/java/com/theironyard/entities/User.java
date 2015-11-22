@@ -26,8 +26,5 @@ public class User {
     @Column(nullable = false)
     public String email;
 
-    @OneToMany(mappedBy = "user")
-    public List<Item> items;
-
 
 }

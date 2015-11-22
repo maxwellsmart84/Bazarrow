@@ -30,14 +30,22 @@ public class BazarrowControllers {
 
     @PostConstruct
     public void init() throws InvalidKeySpecException, NoSuchAlgorithmException {
-        User user = users.findOneByUsername("Ben");
-        if (user ==  null) {
-            user= new User();
+        if (users.count() >0) {
+            return;
+        }else {
+            User user = new User();
             user.username = "Ben";
             user.password = PasswordHash.createHash("wtf");
             user.location = "location";
             user.email = "email";
             users.save(user);
+            Item item = new Item();
+            item.itemName = "Dank bike helmet";
+            item.description = "The dankiest of bike helmets";
+            item.category = "Dank sports";
+            item.photoName = "tinfoil'.jpeg";
+            item.user = users.findOneByUsername("Ben");
+            items.save(item);
         }
     }
 
@@ -87,9 +95,6 @@ public class BazarrowControllers {
 
     @RequestMapping("/items")
     public List<Item> getItems(String category){
-        if (category != null) {
-             return (List<Item>)items.findAllByCategory(category);
-        }
         return (List<Item>)items.findAll();
     }
 
@@ -97,6 +102,16 @@ public class BazarrowControllers {
     public void logout(HttpSession session, HttpServletResponse response) throws IOException {
         session.invalidate();
         response.sendRedirect("/");
+    }
+
+    @RequestMapping("/delete-user")
+    public void deleteUser(int id){
+        users.delete(id);
+    }
+
+    @RequestMapping("/delete-item")
+    public void deleteItem(int id) {
+        items.delete(id);
     }
 
 
