@@ -14,22 +14,22 @@ var PostCollectionView = require('./postCollectionView');
 var UserCollection = require('./userCollection');
 var GoodsCollection = require('./goodsCollection');
 var PostCollection = require('./postCollection');
+var router = require('./router');
 
 
 module.exports = Backbone.View.extend({
   el: '#layoutView',
   initialize: function () {
-    Backbone.history.start();
-    router.navigate('login');
-    var self = this;
-    if(loc === 'login'){
+    // Backbone.history.start();
+    // router.navigate('login');
+    // var self = this;
+    // if(loc === 'login'){
     // var headerHTML = new HeaderView();
     // var loginFormHTML = new LoginFormView();
     // // var userHTML = new UserView();
     // var formHTML = new FormView();
     // // var goodsHTML = new GoodsView();
     // // var postHTML = new PostView();
-  }
 },
 
 // lines 33-52 need to be updated with the content that we need on our page

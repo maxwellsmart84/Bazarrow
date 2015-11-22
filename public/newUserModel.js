@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: '/users',
+  urlRoot: '/create-user',
   idAttribute: 'id',
   defaults: function (){
     return {
@@ -12,6 +12,5 @@ module.exports = Backbone.Model.extend({
     };
   },
   initialize: function () {
-    console.log("hello");
   }
 });

@@ -8,6 +8,7 @@ var UserCollection = require('./userCollection');
 var GoodsCollection = require('./goodsCollection');
 var PostCollection = require('./postCollection');
 var LayoutView = require('./layoutView');
+var LoginFormView = require('./loginFormView');
 
 module.exports = Backbone.Router.extend({
   routes: {
@@ -16,7 +17,8 @@ module.exports = Backbone.Router.extend({
     'market': 'postPage'
   },
   initialize: function (options) {
-    new LayoutView('login');
+
+
   },
   postPage: function () {
     router.navigate('market');
@@ -30,6 +32,8 @@ module.exports = Backbone.Router.extend({
   },
   homePage: function () {
     console.log("you've made it to home!!");
+    var loginformHTML = new LoginFormView();
+
   },
   userPage: function () {
     router.navigate('profile');

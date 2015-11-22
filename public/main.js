@@ -36,6 +36,6 @@ var Router = require('./router');
 $(function () {
   new Router();
   Backbone.history.start();
-  new layoutView();
+  // new layoutView();
 
 });
