@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var Backbone = require('backbone');
 
 $( ".l-signUpBtn" ).on( "click", function() {
   $('.signUpDiv').removeClass('hide');
@@ -11,7 +12,11 @@ $( ".s-loginBtn" ).on( "click", function() {
 });
 
 var layoutView = require('./layoutView');
+var Router = require('./router');
 
 $(function () {
+  new Router();
+  Backbone.history.start();
   new layoutView();
+
 });

@@ -19,32 +19,36 @@ var PostCollection = require('./postCollection');
 module.exports = Backbone.View.extend({
   el: '#layoutView',
   initialize: function () {
+    Backbone.history.start();
+    router.navigate('login');
     var self = this;
-    var headerHTML = new HeaderView();
-    var loginFormHTML = new LoginFormView();
-    var userHTML = new UserView();
-    var formHTML = new FormView();
-    var goodsHTML = new GoodsView();
-    var postHTML = new PostView();
-
+    if(loc === 'login'){
+    // var headerHTML = new HeaderView();
+    // var loginFormHTML = new LoginFormView();
+    // // var userHTML = new UserView();
+    // var formHTML = new FormView();
+    // // var goodsHTML = new GoodsView();
+    // // var postHTML = new PostView();
+  }
+},
 
 // lines 33-52 need to be updated with the content that we need on our page
 
-    var goodsCollection = new GoodsCollection();
-    goodsCollection.fetch().then(function () {
-      var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
-      // self.$el.find('section').html()
-      self.$el.find('.submit-section').html(formHTML.render().el);
-      self.$el.find('.goods').html(goodsHTML.render().el);
-    });
+    // var goodsCollection = new GoodsCollection();
+    // goodsCollection.fetch().then(function () {
+    //   var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
+    //   // self.$el.find('section').html()
+    //   self.$el.find('.submit-section').html(formHTML.render().el);
+    //   self.$el.find('.goods').html(goodsHTML.render().el);
+    // });
 
-    var userCollection = new UserCollection();
-    userCollection.fetch().then(function () {
-      var userCollectionView = new UserCollectionView({collection: userCollection});
-      // self.$el.find('section').html()
-      self.$el.find('header').html(headerHTML.render().el);
-      self.$el.find('.submit-section').html(formHTML.render().el);
-    });
+    // var userCollection = new UserCollection();
+    // userCollection.fetch().then(function () {
+    //   var userCollectionView = new UserCollectionView({collection: userCollection});
+    //   // self.$el.find('section').html()
+    //   self.$el.find('header').html(headerHTML.render().el);
+    //   self.$el.find('.submit-section').html(formHTML.render().el);
+    // });
 
     // var postCollection = new PostCollection();
     // postCollection.fetch().then(function () {
@@ -53,6 +57,6 @@ module.exports = Backbone.View.extend({
     //   self.$el.find('header').html(headerHTML.render().el);
     //
     // });
-  }
+  // }
 
 });
