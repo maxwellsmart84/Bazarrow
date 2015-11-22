@@ -7,7 +7,7 @@ Backbone.$ = $;
 
 
 module.exports = Backbone.View.extend({
-  el: '#page',
+  el: '.marketList',
   initialize: function () {
     this.addAll();
   },

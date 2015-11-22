@@ -36,14 +36,14 @@
 //     userCollection.fetch().then(function () {
 //       var userCollectionView = new UserCollectionView({collection: userCollection});
 //       // self.$el.find('section').html()
-//       self.$el.find('header').html(headerHTML.render().el);
+//
 //       self.$el.find('.submit-section').html(formHTML.render().el);
 //     });
 //     var goodsCollection = new GoodsCollection();
 //     goodsCollection.fetch().then(function () {
 //       var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
 //       // self.$el.find('section').html()
-//       self.$el.find('header').html(headerHTML.render().el);
+//
 //       self.$el.find('.submit-section').html(formHTML.render().el);
 //     });
 //   }
