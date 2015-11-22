@@ -13,13 +13,20 @@ module.exports = {
       '</ul>',
   ].join(""),
   goods: [
+    '<div class="addItemMenu hide">',
+      '<form class="addItemForm" action="index.html" method="post">',
+        '<input type="text" class="form-control itemInputTitle" name="title"  placeholder="Title">',
+        '<input type="picture" class="form-control itemInputPicture" name="itemPicture"  placeholder="Item Picture">',
+        '<input type="text" class="form-control itemInputDescription" name="itemDescription"  placeholder="Description">',
+        '<button type="submit" name="button">Submit</button>',
+      '</form>',
+    '</div>',
     '<div class="itemsList">',
-      '<img src="https://c1.staticflickr.com/3/2908/13882081334_ce71319389_b.jpg" alt="">',
-      '<ul>',
-        // '<li><h2><%= title %></h2></li>',
-        // '<li><h3><%= available %></h3></li>',
-        "<li>Superman's infamous backwards-speaking bad guy. Measures 6.75 high. Exceptional detail. Limited edition!</li>",
-      '</ul>',
+        '<img src="<%= photoName %>" alt="">',
+        '<ul>',
+          '<li><h2><%= itemName %></h2></li>',
+          "<li><p><%= description %></p></li>",
+        '</ul>',
     '</div>',
   ].join(""),
   posts: [
@@ -47,8 +54,11 @@ module.exports = {
     '</form>'
   ].join(""),
   postForm: [
-    "<form>",
-      "<input type = 'text' name= 'postItem' placeholder='What are you looking for?'></input>",
-    "</form>"
+    '<form class="addMarketItemForm hide" action="index.html" method="post">',
+      '<input type="text" class="form-control marketItemTitle" name="marketTitle"  placeholder="Title">',
+      '<input type="picture" class="form-control marketItemPicture" name="marketPicture"  placeholder="Item Picture">',
+      '<input type="text" class="form-control marketItemInputDescription" name="marketDescription"  placeholder="Description">',
+      '<button type="submit" name="button">Submit</button>',
+    '</form>'
   ],
 };

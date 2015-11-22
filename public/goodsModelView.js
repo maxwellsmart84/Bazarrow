@@ -9,10 +9,10 @@ module.exports = Backbone.View.extend({
   tagName: 'section',
   className: '',
   template: _.template(tmpl.goods),
-   events: {
-  //   'click .delete': 'deleteItem',
-  //   'click .edit': 'edit',
-  //   'submit .editted': 'editItem'
+  events: {
+    // 'click .delete': 'deleteItem',
+    // 'click .edit': 'edit',
+    // 'submit .editted': 'editItem'
   },
   initialize: function () {
 

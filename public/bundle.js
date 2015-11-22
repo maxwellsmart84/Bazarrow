@@ -23,7 +23,6 @@ module.exports = Backbone.View.extend({
       image: this.$el.find('input[name="item_image"]').val(),
       title: this.$el.find('input[name="title"]').val(),
       description: this.$el.find('input[name="description"]').val(),
-      available: this.$el.find('input[name="available"]').val(),
     };
     this.model.set(newItem);
     this.model.save();
@@ -39,16 +38,16 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./goodsModel":4,"./templates":19,"backbone":11,"jquery":12,"underscore":13}],2:[function(require,module,exports){
+},{"./goodsModel":4,"./templates":18,"backbone":10,"jquery":11,"underscore":12}],2:[function(require,module,exports){
 var Backbone = require('backbone');
 var GoodsModel = require('./goodsModel');
 
 module.exports = Backbone.Collection.extend({
-  url: '/goods',
+  url: '/itemsHave',
   model: GoodsModel
 });
 
-},{"./goodsModel":4,"backbone":11}],3:[function(require,module,exports){
+},{"./goodsModel":4,"backbone":10}],3:[function(require,module,exports){
 var Backbone = require('backbone');
 var Goods = require('./goodsCollection');
 var _ = require('underscore');
@@ -58,7 +57,7 @@ Backbone.$ = $;
 
 
 module.exports = Backbone.View.extend({
-  el: '#page',
+  el: '.itemsList',
   initialize: function () {
     this.addAll();
   },
@@ -71,18 +70,17 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./goodsCollection":2,"./goodsModelView":5,"backbone":11,"jquery":12,"underscore":13}],4:[function(require,module,exports){
+},{"./goodsCollection":2,"./goodsModelView":5,"backbone":10,"jquery":11,"underscore":12}],4:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/bazarrow',
-  idAttribute: '_id',
+  urlRoot: '/itemsHave',
+  idAttribute: 'id',
   defaults: function (){
     return {
       image: "http://www.fulton58.org/pages/uploaded_images/Nike-Vapor-Elite-Airlock-Size-9-Football-FT0210_201_A.jpg",
       title: "Football",
       description: "Brown Pig-skin Football",
-      available: "Yes",
     };
   },
   initialize: function () {
@@ -90,7 +88,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":11}],5:[function(require,module,exports){
+},{"backbone":10}],5:[function(require,module,exports){
 var Backbone = require('backbone');
 var GoodsModel = require('./goodsModel');
 var _ = require('underscore');
@@ -102,10 +100,10 @@ module.exports = Backbone.View.extend({
   tagName: 'section',
   className: '',
   template: _.template(tmpl.goods),
-   events: {
-  //   'click .delete': 'deleteItem',
-  //   'click .edit': 'edit',
-  //   'submit .editted': 'editItem'
+  events: {
+    // 'click .delete': 'deleteItem',
+    // 'click .edit': 'edit',
+    // 'submit .editted': 'editItem'
   },
   initialize: function () {
 
@@ -139,7 +137,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./goodsModel":4,"./templates":19,"backbone":11,"jquery":12,"underscore":13}],6:[function(require,module,exports){
+},{"./goodsModel":4,"./templates":18,"backbone":10,"jquery":11,"underscore":12}],6:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -158,31 +156,11 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./templates":19,"backbone":11,"jquery":12,"underscore":13}],7:[function(require,module,exports){
+},{"./templates":18,"backbone":10,"jquery":11,"underscore":12}],7:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
 var _ = require('underscore');
-var tmpl = require('./templates');
-
-module.exports = Backbone.View.extend({
-  initialize: function () {},
-  template: _.template(tmpl.header),
-  render: function () {
-    var markup = this.template({});
-    this.$el.html(markup);
-    // in order to call .el off of render we need to return this
-    // bookViewInstance.render().el - yields all markup and data from model
-    return this;
-  }
-});
-
-},{"./templates":19,"backbone":11,"jquery":12,"underscore":13}],8:[function(require,module,exports){
-var Backbone = require('backbone');
-var $ = require('jquery');
-Backbone.$ = $;
-var _ = require('underscore');
-var HeaderView = require('./headerView');
 var LoginFormView = require('./loginFormView');
 var FormView = require('./formView');
 var UserView = require('./userView');
@@ -200,7 +178,6 @@ module.exports = Backbone.View.extend({
   el: '#layoutView',
   initialize: function () {
     var self = this;
-    var headerHTML = new HeaderView();
     var loginFormHTML = new LoginFormView();
     var userHTML = new UserView();
     var formHTML = new FormView();
@@ -214,30 +191,31 @@ module.exports = Backbone.View.extend({
     goodsCollection.fetch().then(function () {
       var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
       // self.$el.find('section').html()
-      self.$el.find('.submit-section').html(formHTML.render().el);
-      self.$el.find('.goods').html(goodsHTML.render().el);
+      self.$el.find('.myItems').html(formHTML.render().el);
+      self.$el.find('.itemsList').html(goodsHTML.render().el);
     });
 
     var userCollection = new UserCollection();
     userCollection.fetch().then(function () {
       var userCollectionView = new UserCollectionView({collection: userCollection});
       // self.$el.find('section').html()
-      self.$el.find('header').html(headerHTML.render().el);
-      self.$el.find('.submit-section').html(formHTML.render().el);
+      self.$el.find('.myItems').html(formHTML.render().el);
+      self.$el.find('.profileInfo').html(userHTML.render().el);
     });
 
-    // var postCollection = new PostCollection();
-    // postCollection.fetch().then(function () {
-    //   var postCollectionView = new PostCollectionView({collection: postCollection});
-    //   // self.$el.find('section').html()
-    //   self.$el.find('header').html(headerHTML.render().el);
-    //
-    // });
+    var postCollection = new PostCollection();
+    postCollection.fetch().then(function () {
+      var postCollectionView = new PostCollectionView({collection: postCollection});
+      // self.$el.find('section').html()
+      self.$el.find('.marketList').html(postHTML.render().el);
+      self.$el.find('.addItemMenu').html(headerHTML.render().el);
+
+    });
   }
 
 });
 
-},{"./formView":1,"./goodsCollection":2,"./goodsCollectionView":3,"./goodsView":6,"./headerView":7,"./loginFormView":9,"./postCollection":14,"./postCollectionView":15,"./postView":18,"./userCollection":20,"./userCollectionView":21,"./userView":24,"backbone":11,"jquery":12,"underscore":13}],9:[function(require,module,exports){
+},{"./formView":1,"./goodsCollection":2,"./goodsCollectionView":3,"./goodsView":6,"./loginFormView":8,"./postCollection":13,"./postCollectionView":14,"./postView":17,"./userCollection":19,"./userCollectionView":20,"./userView":23,"backbone":10,"jquery":11,"underscore":12}],8:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -279,7 +257,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./templates":19,"./userModel":22,"backbone":11,"jquery":12,"underscore":13}],10:[function(require,module,exports){
+},{"./templates":18,"./userModel":21,"backbone":10,"jquery":11,"underscore":12}],9:[function(require,module,exports){
 var $ = require('jquery');
 
 $( ".l-signUpBtn" ).on( "click", function() {
@@ -317,7 +295,7 @@ $(function () {
   new layoutView();
 });
 
-},{"./layoutView":8,"jquery":12}],11:[function(require,module,exports){
+},{"./layoutView":7,"jquery":11}],10:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.3
 
@@ -2215,7 +2193,7 @@ $(function () {
 }));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":12,"underscore":13}],12:[function(require,module,exports){
+},{"jquery":11,"underscore":12}],11:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -11427,7 +11405,7 @@ return jQuery;
 
 }));
 
-},{}],13:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -12977,16 +12955,16 @@ return jQuery;
   }
 }.call(this));
 
-},{}],14:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var Backbone = require('backbone');
 var PostModel = require('./postModel');
 
 module.exports = Backbone.Collection.extend({
-  url: 'http://tiny-tiny.herokuapp.com/collections/bazarrow',
+  url: '/itemsWant',
   model: PostModel
 });
 
-},{"./postModel":16,"backbone":11}],15:[function(require,module,exports){
+},{"./postModel":15,"backbone":10}],14:[function(require,module,exports){
 var Backbone = require('backbone');
 var Post = require('./postCollection');
 var _ = require('underscore');
@@ -12996,7 +12974,7 @@ Backbone.$ = $;
 
 
 module.exports = Backbone.View.extend({
-  el: '#page',
+  el: '.marketList',
   initialize: function () {
     this.addAll();
   },
@@ -13009,12 +12987,12 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./postCollection":14,"./postModelView":17,"backbone":11,"jquery":12,"underscore":13}],16:[function(require,module,exports){
+},{"./postCollection":13,"./postModelView":16,"backbone":10,"jquery":11,"underscore":12}],15:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/bazarrow',
-  idAttribute: '_id',
+  urlRoot: '/itemsWant',
+  idAttribute: 'id',
   defaults: function (){
     return {
       userImage: "http://www.fulton58.org/pages/uploaded_images/Nike-Vapor-Elite-Airlock-Size-9-Football-FT0210_201_A.jpg",
@@ -13026,9 +13004,9 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":11}],17:[function(require,module,exports){
+},{"backbone":10}],16:[function(require,module,exports){
 var Backbone = require('backbone');
-var UserModel = require('./userModel');
+var PostModel = require('./postModel');
 var _ = require('underscore');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -13075,7 +13053,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":19,"./userModel":22,"backbone":11,"jquery":12,"underscore":13}],18:[function(require,module,exports){
+},{"./postModel":15,"./templates":18,"backbone":10,"jquery":11,"underscore":12}],17:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -13094,7 +13072,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./templates":19,"backbone":11,"jquery":12,"underscore":13}],19:[function(require,module,exports){
+},{"./templates":18,"backbone":10,"jquery":11,"underscore":12}],18:[function(require,module,exports){
 module.exports = {
   header: [
     "<h1>hello world</h1>"
@@ -13110,13 +13088,20 @@ module.exports = {
       '</ul>',
   ].join(""),
   goods: [
+    '<div class="addItemMenu hide">',
+      '<form class="addItemForm" action="index.html" method="post">',
+        '<input type="text" class="form-control itemInputTitle" name="title"  placeholder="Title">',
+        '<input type="picture" class="form-control itemInputPicture" name="itemPicture"  placeholder="Item Picture">',
+        '<input type="text" class="form-control itemInputDescription" name="itemDescription"  placeholder="Description">',
+        '<button type="submit" name="button">Submit</button>',
+      '</form>',
+    '</div>',
     '<div class="itemsList">',
-      '<img src="https://c1.staticflickr.com/3/2908/13882081334_ce71319389_b.jpg" alt="">',
-      '<ul>',
-        // '<li><h2><%= title %></h2></li>',
-        // '<li><h3><%= available %></h3></li>',
-        "<li>Superman's infamous backwards-speaking bad guy. Measures 6.75 high. Exceptional detail. Limited edition!</li>",
-      '</ul>',
+        '<img src="<%= photoName %>" alt="">',
+        '<ul>',
+          '<li><h2><%= itemName %></h2></li>',
+          "<li><p><%= description %></p></li>",
+        '</ul>',
     '</div>',
   ].join(""),
   posts: [
@@ -13144,13 +13129,16 @@ module.exports = {
     '</form>'
   ].join(""),
   postForm: [
-    "<form>",
-      "<input type = 'text' name= 'postItem' placeholder='What are you looking for?'></input>",
-    "</form>"
+    '<form class="addMarketItemForm hide" action="index.html" method="post">',
+      '<input type="text" class="form-control marketItemTitle" name="marketTitle"  placeholder="Title">',
+      '<input type="picture" class="form-control marketItemPicture" name="marketPicture"  placeholder="Item Picture">',
+      '<input type="text" class="form-control marketItemInputDescription" name="marketDescription"  placeholder="Description">',
+      '<button type="submit" name="button">Submit</button>',
+    '</form>'
   ],
 };
 
-},{}],20:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 var Backbone = require('backbone');
 var UserModel = require('./userModel');
 
@@ -13159,7 +13147,7 @@ module.exports = Backbone.Collection.extend({
   model: UserModel
 });
 
-},{"./userModel":22,"backbone":11}],21:[function(require,module,exports){
+},{"./userModel":21,"backbone":10}],20:[function(require,module,exports){
 var Backbone = require('backbone');
 var User = require('./userCollection');
 var _ = require('underscore');
@@ -13182,17 +13170,16 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./userCollection":20,"./userModelView":23,"backbone":11,"jquery":12,"underscore":13}],22:[function(require,module,exports){
+},{"./userCollection":19,"./userModelView":22,"backbone":10,"jquery":11,"underscore":12}],21:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/bazarrow',
-  idAttribute: '_id',
+  urlRoot: '/users',
+  idAttribute: 'id',
   defaults: function (){
     return {
       image: "",
       username: "km",
-      rating: "5 stars",
       location: "Charleston, SC"
     };
   },
@@ -13201,7 +13188,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":11}],23:[function(require,module,exports){
+},{"backbone":10}],22:[function(require,module,exports){
 var Backbone = require('backbone');
 var UserModel = require('./userModel');
 var _ = require('underscore');
@@ -13228,7 +13215,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":19,"./userModel":22,"backbone":11,"jquery":12,"underscore":13}],24:[function(require,module,exports){
+},{"./templates":18,"./userModel":21,"backbone":10,"jquery":11,"underscore":12}],23:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -13247,4 +13234,4 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./templates":19,"backbone":11,"jquery":12,"underscore":13}]},{},[10]);
+},{"./templates":18,"backbone":10,"jquery":11,"underscore":12}]},{},[9]);
