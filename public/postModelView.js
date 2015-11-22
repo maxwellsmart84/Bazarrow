@@ -1,5 +1,5 @@
 var Backbone = require('backbone');
-var UserModel = require('./userModel');
+var PostModel = require('./postModel');
 var _ = require('underscore');
 var $ = require('jquery');
 Backbone.$ = $;
