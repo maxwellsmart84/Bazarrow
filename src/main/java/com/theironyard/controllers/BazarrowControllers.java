@@ -65,11 +65,10 @@ public class BazarrowControllers {
     public void login(HttpSession session, HttpServletResponse response, String username, String password) throws Exception {
         User user = users.findOneByUsername(username);
         if (!PasswordHash.validatePassword(password, user.password)) {
-            response.sendRedirect("/create-profile");
+            throw new Exception("Wrong Password");
         }
         else {
             session.setAttribute("username", username);
-            response.sendRedirect("/");
         }
     }
 
