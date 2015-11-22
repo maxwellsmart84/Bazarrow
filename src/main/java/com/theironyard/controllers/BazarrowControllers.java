@@ -9,6 +9,7 @@ import com.theironyard.services.UserRepository;
 import com.theironyard.util.PasswordHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
@@ -71,7 +72,7 @@ public class BazarrowControllers {
         }
     }
 
-    @RequestMapping("/create-profile")
+    @RequestMapping(path = "/users", method = RequestMethod.POST)
     public void createProfile(HttpServletResponse response, String username, String password, String location, String email) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
         User user = new User();
         user.username = username;
@@ -79,7 +80,7 @@ public class BazarrowControllers {
         user.location = location;
         user.email = email;
         users.save(user);
-        response.sendRedirect("/");
+        response.sendRedirect("/#profile");
     }
 
     @RequestMapping("/create-itemHave")
@@ -110,7 +111,7 @@ public class BazarrowControllers {
         itemsWant.save(itemWant);
     }
 
-    @RequestMapping("/users")
+    @RequestMapping(path = "/users", method = RequestMethod.GET)
     public List<User>getUsers(){
         return (List<User>)users.findAll();
     }
@@ -146,8 +147,7 @@ public class BazarrowControllers {
 
     @RequestMapping("/delete-itemWant")
     public void deleteItemWant(int id) {
-
-        itemsWant.delete(id);
+        itemsHave.delete(id);
     }
 
 }
