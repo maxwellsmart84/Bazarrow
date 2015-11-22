@@ -4,7 +4,5 @@ var NewUserModel = require('./newUserModel');
 
 module.exports = Backbone.Collection.extend({
   url: '/users',
-  model: UserModel,
-        NewUserModel
-
+  model: UserModel
 });

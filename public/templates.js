@@ -26,7 +26,15 @@ module.exports = {
     "<img src = '<%= profileimg %>>",
     "<h1>Looking for: <span class = '.lookingFor'></span></h1>",
   ].join(""),
-  form: [
+  loginForm: [
+  '<form class="loginForm" action="index.html" method="post">',
+    "<input type='text' name='loginName' placeholder='Username'></input>",
+    '<input type="password" class="form-control loginPassword" name="name" value="" placeholder="Password>',
+    '<button type="button" class="btn btn-secondary l-loginBtn">Login</button>',
+    '<button type="button" class="btn btn-secondary l-signUpBtn">Sign Up</button>',
+  "</form>"
+].join(""),
+  signUpForm: [
     '<h1><span class="titleSpan">Bazarrow</span></h1>',
     '<form class="loginForm" action="index.html" method="post">',
       "<input type='text' name='loginName' placeholder='Username'></input>",
