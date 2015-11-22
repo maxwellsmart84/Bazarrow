@@ -44,6 +44,7 @@ public class BazarrowControllers {
             user.password = PasswordHash.createHash("wtf");
             user.location = "location";
             user.email = "email";
+            user.image = "http://i.imgur.com/CE4r5vR.jpg";
             users.save(user);
             ItemsHave item = new ItemsHave();
             item.itemName = "Dank bike helmet";
