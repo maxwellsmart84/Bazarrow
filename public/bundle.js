@@ -323,6 +323,7 @@ $( ".homeBtn" ).on( "click", function() {
 
 
 $(function () {
+  new LayoutView();
   new Router();
   Backbone.history.start();
   new LoginFormView();
@@ -13260,14 +13261,14 @@ module.exports = {
 },{}],21:[function(require,module,exports){
 var Backbone = require('backbone');
 var UserModel = require('./userModel');
-var NewUserModel = require('./newUserModel');
+
 
 module.exports = Backbone.Collection.extend({
   url: '/users',
   model: UserModel
 });
 
-},{"./newUserModel":10,"./userModel":23,"backbone":11}],22:[function(require,module,exports){
+},{"./userModel":23,"backbone":11}],22:[function(require,module,exports){
 var Backbone = require('backbone');
 var User = require('./userCollection');
 var _ = require('underscore');
@@ -13277,7 +13278,7 @@ Backbone.$ = $;
 
 
 module.exports = Backbone.View.extend({
-  el: '.container profile',
+  el: '.profileInfo',
   initialize: function () {
     this.addAll();
   },
@@ -13318,7 +13319,7 @@ var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
   tagName: 'div',
-  className: 'container profile',
+  className: '',
   template: _.template(tmpl.user),
   events: {
 

@@ -34,6 +34,7 @@ $( ".homeBtn" ).on( "click", function() {
 
 
 $(function () {
+  new LayoutView();
   new Router();
   Backbone.history.start();
   new LoginFormView();
