@@ -22,7 +22,6 @@ module.exports = Backbone.View.extend({
       image: this.$el.find('input[name="item_image"]').val(),
       title: this.$el.find('input[name="title"]').val(),
       description: this.$el.find('input[name="description"]').val(),
-      available: this.$el.find('input[name="available"]').val(),
     };
     this.model.set(newItem);
     this.model.save();

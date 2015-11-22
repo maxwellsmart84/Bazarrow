@@ -7,7 +7,6 @@ module.exports = Backbone.Model.extend({
     return {
       image: "",
       username: "km",
-      rating: "5 stars",
       location: "Charleston, SC"
     };
   },
