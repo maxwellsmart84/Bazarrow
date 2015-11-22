@@ -156,6 +156,11 @@ body {
   .itemsList li {
     list-style: none; }
 
+.addItemForm {
+  width: 50%;
+  margin-left: 36%;
+  margin-top: 3%; }
+
 #marketHeader {
   margin-top: -20px; }
   #marketHeader h2 {
@@ -196,7 +201,8 @@ h3 {
   background: white;
   padding: 1%;
   margin: 0 0 5% 13%;
-  box-shadow: 1px 1px #CCCCCC; }
+  box-shadow: 1px 1px #CCCCCC;
+  color: #00467D; }
 
 .marketAddItem {
   background: white;
@@ -207,6 +213,7 @@ h3 {
   font-size: .75em; }
 
 .marketList {
+  height: 200px;
   width: 70%;
   background: white;
   margin: 10px 0 1% 13%;
@@ -214,12 +221,28 @@ h3 {
   .marketList div {
     display: inline-block; }
   .marketList .marketProfPic {
-    padding: 2% 0 2% 4%; }
+    padding: 4% 0 2% 6%; }
+  .marketList h2 {
+    position: relative;
+    left: 32%;
+    top: -86%; }
 
 #marketItemPic {
-  width: 50px;
-  height: 50px;
-  background-size: auto; }
+  width: 70px;
+  height: 70px;
+  border: 1px solid #CCCCCC;
+  margin: -180px 0 0 1100%; }
+
+.marketItemDescription {
+  margin-left: 32%;
+  margin-top: -18%;
+  width: 50%; }
+
+.addMarketItem {
+  width: 38%;
+  margin-left: 45%; }
+  .addMarketItem .addMarketItemForm {
+    margin-top: 2%; }
 
 .profileFooter {
   background: #00467D; }
