@@ -14,12 +14,12 @@ $( ".s-loginBtn" ).on( "click", function() {
 });
 
 $( ".profileAddItem" ).on( "click", function() {
-  $('.myItemsBtn').addClass('hide');
-  $('.addItemMenu').removeClass('hide');
+  $('.myItemsBtn').toggleClass('hide');
+  $('.addItemMenu').toggleClass('hide');
 });
 
 $( ".marketAddItem" ).on( "click", function() {
-  $('.addMarketItemForm').removeClass('hide');
+  $('.addMarketItemForm').toggleClass('hide');
 });
 
 $( ".marketBtn" ).on( "click", function() {
@@ -32,6 +32,7 @@ $( ".homeBtn" ).on( "click", function() {
   $('#market').addClass('hide');
 });
 
+var layoutView = require('./layoutView');
 
 $(function () {
   new LayoutView();
@@ -39,5 +40,4 @@ $(function () {
   Backbone.history.start();
   new LoginFormView();
   // new layoutView();
-
 });

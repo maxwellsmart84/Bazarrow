@@ -32,7 +32,7 @@ module.exports = Backbone.View.extend({
    goodsCollection.fetch().then(function () {
      var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
      // self.$el.find('section').html()
-     self.$el.find('.myItems').html(formHTML.render().el);
+     self.$el.find('.addItemMenu').html(formHTML.render().el);
      self.$el.find('.itemsList').html(goodsHTML.render().el);
    });
 
