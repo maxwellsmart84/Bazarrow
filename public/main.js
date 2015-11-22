@@ -11,6 +11,25 @@ $( ".s-loginBtn" ).on( "click", function() {
   $('.loginDiv').removeClass('hide');
 });
 
+$( ".profileAddItem" ).on( "click", function() {
+  $('.myItemsBtn').addClass('hide');
+  $('.addItemMenu').removeClass('hide');
+});
+
+$( ".marketAddItem" ).on( "click", function() {
+  $('.addMarketItemForm').removeClass('hide');
+});
+
+$( ".marketBtn" ).on( "click", function() {
+  $('.profilePage').addClass('hide');
+  $('#market').removeClass('hide');
+});
+
+$( ".homeBtn" ).on( "click", function() {
+  $('.profilePage').removeClass('hide');
+  $('#market').addClass('hide');
+});
+
 var layoutView = require('./layoutView');
 var Router = require('./router');
 
