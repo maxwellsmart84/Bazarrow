@@ -28,7 +28,7 @@ module.exports = Backbone.View.extend({
     this.model.save();
     this.$el.find('input').val('');
   },
-  template: _.template(tmpl.form),
+  template: _.template(tmpl.goodsForm),
   render: function () {
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
@@ -38,7 +38,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./goodsModel":4,"./templates":18,"backbone":10,"jquery":11,"underscore":12}],2:[function(require,module,exports){
+},{"./goodsModel":4,"./templates":20,"backbone":11,"jquery":12,"underscore":13}],2:[function(require,module,exports){
 var Backbone = require('backbone');
 var GoodsModel = require('./goodsModel');
 
@@ -47,7 +47,7 @@ module.exports = Backbone.Collection.extend({
   model: GoodsModel
 });
 
-},{"./goodsModel":4,"backbone":10}],3:[function(require,module,exports){
+},{"./goodsModel":4,"backbone":11}],3:[function(require,module,exports){
 var Backbone = require('backbone');
 var Goods = require('./goodsCollection');
 var _ = require('underscore');
@@ -70,7 +70,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./goodsCollection":2,"./goodsModelView":5,"backbone":10,"jquery":11,"underscore":12}],4:[function(require,module,exports){
+},{"./goodsCollection":2,"./goodsModelView":5,"backbone":11,"jquery":12,"underscore":13}],4:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -88,7 +88,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":10}],5:[function(require,module,exports){
+},{"backbone":11}],5:[function(require,module,exports){
 var Backbone = require('backbone');
 var GoodsModel = require('./goodsModel');
 var _ = require('underscore');
@@ -137,7 +137,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./goodsModel":4,"./templates":18,"backbone":10,"jquery":11,"underscore":12}],6:[function(require,module,exports){
+},{"./goodsModel":4,"./templates":20,"backbone":11,"jquery":12,"underscore":13}],6:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -156,7 +156,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./templates":18,"backbone":10,"jquery":11,"underscore":12}],7:[function(require,module,exports){
+},{"./templates":20,"backbone":11,"jquery":12,"underscore":13}],7:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -175,79 +175,108 @@ var PostCollection = require('./postCollection');
 
 
 module.exports = Backbone.View.extend({
-  el: '#layoutView',
-  initialize: function () {
-    var self = this;
-    var loginFormHTML = new LoginFormView();
-    var userHTML = new UserView();
-    var formHTML = new FormView();
-    var goodsHTML = new GoodsView();
-    var postHTML = new PostView();
+ el: '#layoutView',
+ initialize: function () {
+   var self = this;
+   var loginFormHTML = new LoginFormView();
+   var userHTML = new UserView();
+   var formHTML = new FormView();
+   var goodsHTML = new GoodsView();
+   var postHTML = new PostView();
 
 
 // lines 33-52 need to be updated with the content that we need on our page
 
-    var goodsCollection = new GoodsCollection();
-    goodsCollection.fetch().then(function () {
-      var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
-      // self.$el.find('section').html()
-      self.$el.find('.myItems').html(formHTML.render().el);
-      self.$el.find('.itemsList').html(goodsHTML.render().el);
-    });
+   var goodsCollection = new GoodsCollection();
+   goodsCollection.fetch().then(function () {
+     var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
+     // self.$el.find('section').html()
+     self.$el.find('.myItems').html(formHTML.render().el);
+     self.$el.find('.itemsList').html(goodsHTML.render().el);
+   });
 
-    var userCollection = new UserCollection();
-    userCollection.fetch().then(function () {
-      var userCollectionView = new UserCollectionView({collection: userCollection});
-      // self.$el.find('section').html()
-      self.$el.find('.myItems').html(formHTML.render().el);
-      self.$el.find('.profileInfo').html(userHTML.render().el);
-    });
+   var userCollection = new UserCollection();
+   userCollection.fetch().then(function () {
+     var userCollectionView = new UserCollectionView({collection: userCollection});
+     // self.$el.find('section').html()
+     self.$el.find('.myItems').html(formHTML.render().el);
+     self.$el.find('.profileInfo').html(userHTML.render().el);
+   });
 
-    var postCollection = new PostCollection();
-    postCollection.fetch().then(function () {
-      var postCollectionView = new PostCollectionView({collection: postCollection});
-      // self.$el.find('section').html()
-      self.$el.find('.marketList').html(postHTML.render().el);
-      self.$el.find('.addItemMenu').html(headerHTML.render().el);
+   var postCollection = new PostCollection();
+   postCollection.fetch().then(function () {
+     var postCollectionView = new PostCollectionView({collection: postCollection});
+     // self.$el.find('section').html()
+     self.$el.find('.marketList').html(postHTML.render().el);
+     self.$el.find('.addItemMenu').html(headerHTML.render().el);
 
-    });
-  }
-
+   });
+ }
 });
 
-},{"./formView":1,"./goodsCollection":2,"./goodsCollectionView":3,"./goodsView":6,"./loginFormView":8,"./postCollection":13,"./postCollectionView":14,"./postView":17,"./userCollection":19,"./userCollectionView":20,"./userView":23,"backbone":10,"jquery":11,"underscore":12}],8:[function(require,module,exports){
+},{"./formView":1,"./goodsCollection":2,"./goodsCollectionView":3,"./goodsView":6,"./loginFormView":8,"./postCollection":14,"./postCollectionView":15,"./postView":18,"./userCollection":21,"./userCollectionView":22,"./userView":25,"backbone":11,"jquery":12,"underscore":13}],8:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
 var _ = require('underscore');
 var tmpl = require('./templates');
 var UserModel = require('./userModel');
+var NewUserModel = require('./newUserModel');
+
 
 module.exports = Backbone.View.extend({
   className: 'addLogin',
   model: null, // just here as placeholder, but need a model up on instantiation
   events: {
-    'submit form': 'submitForm'
+    'click .l-signUpBtn': 'signUpFormShow',
+    'click .l-loginBtn': 'submitLoginForm',
+    'click .s-loginBtn': 'loginFormHide',
+    'click .s-signUpBtn': 'submtLoginForm',
+    // $( ".l-signUpBtn" ).on( "click", function() {
+    //   $('.signUpDiv').removeClass('hide');
+    //   $('.loginDiv').addClass('hide');
   },
   initialize: function () {
     if(!this.model) {
       this.model = new UserModel();
+      this.model2 = new NewUserModel();
     }
   },
-  submitForm: function (event) {
+  signUpFormHide: function (event){
+    $('.signUpDiv').removeClass('hide');
+    $('.loginDiv').addClass('hide');
+  },
+  loginFormHide: function (event){
+    $('.signUpDiv').addClass('hide');
+    $('.loginDiv').removeClass('hide');
+  },
+  submitLoginForm: function (event) {
     event.preventDefault();
-    var newUser = {
-      image: this.$el.find('input[name="user_image"]').val(),
-      username: this.$el.find('input[name="username"]').val(),
-      location: this.$el.find('input[name="location"]').val(),
-      email: this.$el.find('input[name="email"]').val(),
-      password: this.$el.find('input[name="password"]').val()
+    var returnUser = {
+      username: this.$el.find('input[name="signUpUsername"]').val(),
+      location: this.$el.find('input[name="signUpLocation"]').val(),
+      email: this.$el.find('input[name="signUpEmail"]').val(),
+      password: this.$el.find('input[name="signUpPassword"]').val()
+    };
+    this.model.set(returnUser);
+    this.model.save();
+    this.$el.find('input').val('');
+  },
+
+  submitSignUpForm: function (event) {
+    event.preventDefault();
+    var newUser ={
+      image: this.$el.find('input[name="signUpAvatar"]').val(),
+      username: this.$el.find('input[name="signUpUsername"]').val(),
+      location: this.$el.find('input[name="signUpLocation"]').val(),
+      email: this.$el.find('input[name="signUpEmail"]').val(),
+      password: this.$el.find('input[name="signUpPassword"]').val()
     };
     this.model.set(newUser);
     this.model.save();
     this.$el.find('input').val('');
   },
-  template: _.template(tmpl.form),
+  template: _.template(tmpl.userForm),
   render: function () {
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
@@ -257,8 +286,11 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./templates":18,"./userModel":21,"backbone":10,"jquery":11,"underscore":12}],9:[function(require,module,exports){
+},{"./newUserModel":10,"./templates":20,"./userModel":23,"backbone":11,"jquery":12,"underscore":13}],9:[function(require,module,exports){
 var $ = require('jquery');
+var Backbone = require('backbone');
+var LayoutView = require('./layoutView');
+var Router = require('./router');
 
 $( ".l-signUpBtn" ).on( "click", function() {
   $('.signUpDiv').removeClass('hide');
@@ -289,13 +321,34 @@ $( ".homeBtn" ).on( "click", function() {
   $('#market').addClass('hide');
 });
 
-var layoutView = require('./layoutView');
 
 $(function () {
-  new layoutView();
+  new Router();
+  Backbone.history.start();
+  new LoginFormView();
+  // new layoutView();
+
 });
 
-},{"./layoutView":7,"jquery":11}],10:[function(require,module,exports){
+},{"./layoutView":7,"./router":19,"backbone":11,"jquery":12}],10:[function(require,module,exports){
+var Backbone = require('backbone');
+
+module.exports = Backbone.Model.extend({
+  urlRoot: '/create-user',
+  idAttribute: 'id',
+  defaults: function (){
+    return {
+      image: "",
+      username: "km",
+      rating: "5 stars",
+      location: "Charleston, SC"
+    };
+  },
+  initialize: function () {
+  }
+});
+
+},{"backbone":11}],11:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.3
 
@@ -2193,7 +2246,7 @@ $(function () {
 }));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":11,"underscore":12}],11:[function(require,module,exports){
+},{"jquery":12,"underscore":13}],12:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -11405,7 +11458,7 @@ return jQuery;
 
 }));
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -12955,7 +13008,7 @@ return jQuery;
   }
 }.call(this));
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 var Backbone = require('backbone');
 var PostModel = require('./postModel');
 
@@ -12964,7 +13017,7 @@ module.exports = Backbone.Collection.extend({
   model: PostModel
 });
 
-},{"./postModel":15,"backbone":10}],14:[function(require,module,exports){
+},{"./postModel":16,"backbone":11}],15:[function(require,module,exports){
 var Backbone = require('backbone');
 var Post = require('./postCollection');
 var _ = require('underscore');
@@ -12987,7 +13040,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./postCollection":13,"./postModelView":16,"backbone":10,"jquery":11,"underscore":12}],15:[function(require,module,exports){
+},{"./postCollection":14,"./postModelView":17,"backbone":11,"jquery":12,"underscore":13}],16:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -13004,7 +13057,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":10}],16:[function(require,module,exports){
+},{"backbone":11}],17:[function(require,module,exports){
 var Backbone = require('backbone');
 var PostModel = require('./postModel');
 var _ = require('underscore');
@@ -13053,7 +13106,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./postModel":15,"./templates":18,"backbone":10,"jquery":11,"underscore":12}],17:[function(require,module,exports){
+},{"./postModel":16,"./templates":20,"backbone":11,"jquery":12,"underscore":13}],18:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -13072,7 +13125,65 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./templates":18,"backbone":10,"jquery":11,"underscore":12}],18:[function(require,module,exports){
+},{"./templates":20,"backbone":11,"jquery":12,"underscore":13}],19:[function(require,module,exports){
+var Backbone = require('backbone');
+var $ = require('jquery');
+var _ = require('underscore');
+var UserCollectionView = require('./userCollectionView');
+var GoodsCollectionView = require('./goodsCollectionView');
+var PostCollectionView = require('./postCollectionView');
+var UserCollection = require('./userCollection');
+var GoodsCollection = require('./goodsCollection');
+var PostCollection = require('./postCollection');
+var LayoutView = require('./layoutView');
+var LoginFormView = require('./loginFormView');
+
+module.exports = Backbone.Router.extend({
+  routes: {
+    '': 'homePage',
+    'profile': 'userPage',
+    'market': 'postPage'
+  },
+  initialize: function (options) {
+
+  },
+  postPage: function () {
+    router.navigate('market');
+    var postCollection = new PostCollection();
+    postCollection.fetch().then(function () {
+      var postCollectionView = new PostCollectionView({collection: postCollection});
+      // self.$el.find('section').html()
+      self.$el.find('header').html(headerHTML.render().el);
+      self.$el.find('.submit-section').html(formHTML.render().el);
+    });
+  },
+  homePage: function () {
+    console.log("you've made it to home!!");
+    var loginformHTML = new LoginFormView();
+
+  },
+
+  userPage: function () {
+    router.navigate('profile');
+    var userCollection = new UserCollection();
+    userCollection.fetch().then(function () {
+      var userCollectionView = new UserCollectionView({collection: userCollection});
+      // self.$el.find('section').html();
+      self.$el.find('header').html(headerHTML.render().el);
+      self.$el.find('.submit-section').html(formHTML.render().el);
+    });
+    var goodsCollection = new GoodsCollection();
+    goodsCollection.fetch().then(function () {
+      var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
+      // self.$el.find('section').html();
+      self.$el.find('header').html(headerHTML.render().el);
+      self.$el.find('.submit-section').html(formHTML.render().el);
+    });
+  },
+
+});
+
+},{"./goodsCollection":2,"./goodsCollectionView":3,"./layoutView":7,"./loginFormView":8,"./postCollection":14,"./postCollectionView":15,"./userCollection":21,"./userCollectionView":22,"backbone":11,"jquery":12,"underscore":13}],20:[function(require,module,exports){
 module.exports = {
   header: [
     "<h1>hello world</h1>"
@@ -13109,25 +13220,33 @@ module.exports = {
     "<h1>Looking for: <span class = '.lookingFor'></span></h1>",
   ].join(""),
   userForm: [
-  '<form class="loginForm" action="index.html" method="post">',
-    "<input type='text' name='loginName' placeholder='Username'></input>",
-    '<input type="password" class="form-control loginPassword" name="name" value="" placeholder="Password>',
-    '<button type="button" class="btn btn-secondary l-loginBtn">Login</button>',
-    '<button type="button" class="btn btn-secondary l-signUpBtn">Sign Up</button>',
-  "</form>"
-].join(""),
-  form: [
     '<h1><span class="titleSpan">Bazarrow</span></h1>',
-    '<form class="signUpForm" action="index.html" method="post">',
-      '<input type="text" class="form-control signUpUsername" name="name"  placeholder="Username">',
-      '<input type="text" class="form-control signUpEmail" name="name"  placeholder="Email">',
-      '<input type="password" class="form-control signUpPassword" name="name"  placeholder="Password">',
-      '<input type="text" class="form-control signUpAvatar" name="name"  placeholder="Profile Picture">',
-      '<input type="text" class="form-control signUpLocation" name="name"  placeholder="Location">',
+    '<form class="loginForm" action="index.html" method="post">',
+      "<input type='text' name='loginName' placeholder='Username'></input>",
+      '<input type="password" class="form-control loginPassword" name="loginPassword" value="" placeholder="Password>',
+      '<button type="button" class="btn btn-secondary l-loginBtn">Login</button>',
+      '<button type="button" class="btn btn-secondary l-signUpBtn">Sign Up</button>',
+    "</form>",
+    '<form class="signUpForm hide" action="index.html" method="post">',
+      '<input type="text" class="form-control signUpUsername" name="signUpUserName"  placeholder="Username">',
+      '<input type="text" class="form-control signUpEmail" name="signUpEmail"  placeholder="Email">',
+      '<input type="password" class="form-control signUpPassword" name="signUpPassword"  placeholder="Password">',
+      '<input type="text" class="form-control signUpAvatar" name="signUpAvatar"  placeholder="Profile Picture">',
+      '<input type="text" class="form-control signUpLocation" name="signUpLocation"  placeholder="Location">',
       '<button type="button" class="btn btn-secondary s-loginBtn">Login</button>',
       '<button type="button" class="btn btn-secondary s-signUpBtn">Sign Up</button>',
     '</form>'
   ].join(""),
+  goodsForm: [
+    '<div class="addItemMenu hide">',
+     '<form class="addItemForm" action="index.html" method="post">',
+       '<input type="text" class="form-control itemInputTitle" name="title"  placeholder="Title">',
+       '<input type="picture" class="form-control itemInputPicture" name="itemPicture"  placeholder="Item Picture">',
+       '<input type="text" class="form-control itemInputDescription" name="itemDescription"  placeholder="Description">',
+       '<button type="submit" name="button">Submit</button>',
+     '</form>',
+   '</div>',
+ ].join(""),
   postForm: [
     '<form class="addMarketItemForm hide" action="index.html" method="post">',
       '<input type="text" class="form-control marketItemTitle" name="marketTitle"  placeholder="Title">',
@@ -13138,16 +13257,17 @@ module.exports = {
   ],
 };
 
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 var Backbone = require('backbone');
 var UserModel = require('./userModel');
+var NewUserModel = require('./newUserModel');
 
 module.exports = Backbone.Collection.extend({
   url: '/users',
   model: UserModel
 });
 
-},{"./userModel":21,"backbone":10}],20:[function(require,module,exports){
+},{"./newUserModel":10,"./userModel":23,"backbone":11}],22:[function(require,module,exports){
 var Backbone = require('backbone');
 var User = require('./userCollection');
 var _ = require('underscore');
@@ -13157,7 +13277,7 @@ Backbone.$ = $;
 
 
 module.exports = Backbone.View.extend({
-  el: '.profileInfo',
+  el: '.container profile',
   initialize: function () {
     this.addAll();
   },
@@ -13170,7 +13290,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./userCollection":19,"./userModelView":22,"backbone":10,"jquery":11,"underscore":12}],21:[function(require,module,exports){
+},{"./userCollection":21,"./userModelView":24,"backbone":11,"jquery":12,"underscore":13}],23:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -13188,7 +13308,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":10}],22:[function(require,module,exports){
+},{"backbone":11}],24:[function(require,module,exports){
 var Backbone = require('backbone');
 var UserModel = require('./userModel');
 var _ = require('underscore');
@@ -13198,7 +13318,7 @@ var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
   tagName: 'div',
-  className: '',
+  className: 'container profile',
   template: _.template(tmpl.user),
   events: {
 
@@ -13215,7 +13335,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":18,"./userModel":21,"backbone":10,"jquery":11,"underscore":12}],23:[function(require,module,exports){
+},{"./templates":20,"./userModel":23,"backbone":11,"jquery":12,"underscore":13}],25:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -13234,4 +13354,4 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./templates":18,"backbone":10,"jquery":11,"underscore":12}]},{},[9]);
+},{"./templates":20,"backbone":11,"jquery":12,"underscore":13}]},{},[9]);
