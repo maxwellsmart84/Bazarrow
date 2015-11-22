@@ -16,42 +16,41 @@ var PostCollection = require('./postCollection');
 
 
 module.exports = Backbone.View.extend({
-  el: '#layoutView',
-  initialize: function () {
-    var self = this;
-    var loginFormHTML = new LoginFormView();
-    var userHTML = new UserView();
-    var formHTML = new FormView();
-    var goodsHTML = new GoodsView();
-    var postHTML = new PostView();
+ el: '#layoutView',
+ initialize: function () {
+   var self = this;
+   var loginFormHTML = new LoginFormView();
+   var userHTML = new UserView();
+   var formHTML = new FormView();
+   var goodsHTML = new GoodsView();
+   var postHTML = new PostView();
 
 
 // lines 33-52 need to be updated with the content that we need on our page
 
-    var goodsCollection = new GoodsCollection();
-    goodsCollection.fetch().then(function () {
-      var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
-      // self.$el.find('section').html()
-      self.$el.find('.myItems').html(formHTML.render().el);
-      self.$el.find('.itemsList').html(goodsHTML.render().el);
-    });
+   var goodsCollection = new GoodsCollection();
+   goodsCollection.fetch().then(function () {
+     var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
+     // self.$el.find('section').html()
+     self.$el.find('.myItems').html(formHTML.render().el);
+     self.$el.find('.itemsList').html(goodsHTML.render().el);
+   });
 
-    var userCollection = new UserCollection();
-    userCollection.fetch().then(function () {
-      var userCollectionView = new UserCollectionView({collection: userCollection});
-      // self.$el.find('section').html()
-      self.$el.find('.myItems').html(formHTML.render().el);
-      self.$el.find('.profileInfo').html(userHTML.render().el);
-    });
+   var userCollection = new UserCollection();
+   userCollection.fetch().then(function () {
+     var userCollectionView = new UserCollectionView({collection: userCollection});
+     // self.$el.find('section').html()
+     self.$el.find('.myItems').html(formHTML.render().el);
+     self.$el.find('.profileInfo').html(userHTML.render().el);
+   });
 
-    var postCollection = new PostCollection();
-    postCollection.fetch().then(function () {
-      var postCollectionView = new PostCollectionView({collection: postCollection});
-      // self.$el.find('section').html()
-      self.$el.find('.marketList').html(postHTML.render().el);
-      self.$el.find('.addItemMenu').html(headerHTML.render().el);
+   var postCollection = new PostCollection();
+   postCollection.fetch().then(function () {
+     var postCollectionView = new PostCollectionView({collection: postCollection});
+     // self.$el.find('section').html()
+     self.$el.find('.marketList').html(postHTML.render().el);
+     self.$el.find('.addItemMenu').html(headerHTML.render().el);
 
-    });
-  }
-
+   });
+ }
 });
