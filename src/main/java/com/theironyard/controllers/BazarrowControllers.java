@@ -49,7 +49,7 @@ public class BazarrowControllers {
             item.itemName = "Dank bike helmet";
             item.description = "The dankest of bike helmets";
             item.category = "Dank sports";
-            item.photoName = "tinfoil'.jpeg";
+            item.photoName = "tinfoil.jpeg";
             item.user = users.findOneByUsername("Ben");
             itemsHave.save(item);
             ItemsWant itemWant = new ItemsWant();
