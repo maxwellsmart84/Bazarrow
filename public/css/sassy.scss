@@ -296,7 +296,18 @@ h3 {
   width: 70px;
   height: 70px;
   border: 1px solid #CCCCCC;
-  margin: -180px 0 0 1100%;
+  margin: -115px 0 0 1050%;
+}
+
+.grow:hover img {
+    -webkit-transform: scale(2.5);
+    -moz-transform: scale(2.5);
+    -ms-transform: scale(2.5);
+    transform: scale(2.5);
+    -webkit-transition: -webkit-transform .3s ease-out;
+    -webkit-transition: transform .3s ease-out;
+    -moz-transition: transform .3s ease-out;
+    transition: transform .3s ease-out;
 }
 
 .marketItemDescription {

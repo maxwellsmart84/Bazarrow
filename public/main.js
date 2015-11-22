@@ -11,12 +11,12 @@ $( ".s-loginBtn" ).on( "click", function() {
 });
 
 $( ".profileAddItem" ).on( "click", function() {
-  $('.myItemsBtn').addClass('hide');
-  $('.addItemMenu').removeClass('hide');
+  $('.myItemsBtn').toggleClass('hide');
+  $('.addItemMenu').toggleClass('hide');
 });
 
 $( ".marketAddItem" ).on( "click", function() {
-  $('.addMarketItemForm').removeClass('hide');
+  $('.addMarketItemForm').toggleClass('hide');
 });
 
 $( ".marketBtn" ).on( "click", function() {
