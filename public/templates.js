@@ -26,15 +26,7 @@ module.exports = {
     "<img src = '<%= profileimg %>>",
     "<h1>Looking for: <span class = '.lookingFor'></span></h1>",
   ].join(""),
-  loginForm: [
-  '<form class="loginForm" action="index.html" method="post">',
-    "<input type='text' name='loginName' placeholder='Username'></input>",
-    '<input type="password" class="form-control loginPassword" name="name" value="" placeholder="Password>',
-    '<button type="button" class="btn btn-secondary l-loginBtn">Login</button>',
-    '<button type="button" class="btn btn-secondary l-signUpBtn">Sign Up</button>',
-  "</form>"
-].join(""),
-  signUpForm: [
+  userForm: [
     '<h1><span class="titleSpan">Bazarrow</span></h1>',
     '<form class="loginForm" action="index.html" method="post">',
       "<input type='text' name='loginName' placeholder='Username'></input>",
@@ -52,6 +44,16 @@ module.exports = {
       '<button type="button" class="btn btn-secondary s-signUpBtn">Sign Up</button>',
     '</form>'
   ].join(""),
+  goodsForm: [
+    '<div class="addItemMenu hide">',
+     '<form class="addItemForm" action="index.html" method="post">',
+       '<input type="text" class="form-control itemInputTitle" name="title"  placeholder="Title">',
+       '<input type="picture" class="form-control itemInputPicture" name="itemPicture"  placeholder="Item Picture">',
+       '<input type="text" class="form-control itemInputDescription" name="itemDescription"  placeholder="Description">',
+       '<button type="submit" name="button">Submit</button>',
+     '</form>',
+   '</div>',
+ ].join(""),
   postForm: [
     "<form>",
       "<input type = 'text' name= 'postItem' placeholder='What are you looking for?'></input>",

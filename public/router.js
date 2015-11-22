@@ -18,7 +18,6 @@ module.exports = Backbone.Router.extend({
   },
   initialize: function (options) {
 
-
   },
   postPage: function () {
     router.navigate('market');

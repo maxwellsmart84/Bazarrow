@@ -58,8 +58,8 @@ module.exports = Backbone.View.extend({
     this.model.set(newUser);
     this.model.save();
     this.$el.find('input').val('');
-  }
-  template: _.template(tmpl.form),
+  },
+  template: _.template(tmpl.userForm),
   render: function () {
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);

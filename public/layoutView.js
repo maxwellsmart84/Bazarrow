@@ -18,8 +18,9 @@ var router = require('./router');
 
 
 module.exports = Backbone.View.extend({
-  el: '#layoutView',
+  el: '.container',
   initialize: function () {
+
     // Backbone.history.start();
     // router.navigate('login');
     // var self = this;
