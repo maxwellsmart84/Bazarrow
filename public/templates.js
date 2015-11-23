@@ -36,10 +36,10 @@ module.exports = {
   userForm: [
     '<div class = loginDiv>',
     '<h1><span class="titleSpan">Bazarrow</span></h1>',
-    '<form class="loginForm" action="index.html" method="post">',
+    '<form class="loginForm" action="/login" method="post">',
       "<input class='form-control loginUsername' type='text' name='loginName' placeholder='Username'></input>",
       '<input type="password" class="form-control loginPassword" name="loginPassword" value="" placeholder="Password">',
-      '<a href="/#profile"><button type="button" class="btn btn-secondary l-loginBtn">Login</button></a>',
+      '<a href=""><button action="" type="button" class="btn btn-secondary l-loginBtn">Login</button></a>',
       '<button type="button" class="btn btn-secondary l-signUpBtn">Sign Up</button>',
     "</form>",
     '</div>',
