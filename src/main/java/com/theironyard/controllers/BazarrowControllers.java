@@ -76,7 +76,6 @@ public class BazarrowControllers {
     @RequestMapping(path = "/users", method = RequestMethod.POST)
     public void createProfile(HttpServletResponse response, @RequestBody User user) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
         users.save(user);
-        response.sendRedirect("/#profile");
     }
 
     @RequestMapping("/create-itemHave")
@@ -127,7 +126,6 @@ public class BazarrowControllers {
     @RequestMapping("/logout")
     public void logout(HttpSession session, HttpServletResponse response) throws IOException {
         session.invalidate();
-        response.sendRedirect("/");
     }
 
     @RequestMapping("/delete-user")
