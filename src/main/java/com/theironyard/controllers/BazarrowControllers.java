@@ -71,10 +71,12 @@ public class BazarrowControllers {
         else {
             session.setAttribute("username", username);
         }
+        response.sendRedirect("/#profile");
+
     }
 
     @RequestMapping(path = "/users", method = RequestMethod.POST)
-    public void createProfile(HttpServletResponse response, @RequestBody User user) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
+    public void createProfile(@RequestBody User user) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
         users.save(user);
     }
 

@@ -26,7 +26,7 @@ public class User {
     @Column(nullable = false)
     public String email;
 
-    @Column(nullable = false)
+ //   @Column(nullable = false)
     public String image;
 
 
