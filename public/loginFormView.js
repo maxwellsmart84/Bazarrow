@@ -12,10 +12,10 @@ module.exports = Backbone.View.extend({
   template: _.template(tmpl.userForm),
   // model: null, // just here as placeholder, but need a model up on instantiation
   events: {
-    'click .l-signUpBtn': 'signUpFormShow',
-    'click .l-loginBtn': 'submitLoginForm',
-    'click .s-loginBtn': 'loginFormShow',
-    'click .s-signUpBtn': 'submitSignUpForm',
+    // 'click .l-signUpBtn': 'signUpFormShow',
+    // 'click .l-loginBtn': 'submitLoginForm',
+    // 'click .s-loginBtn': 'loginFormShow',
+    // 'click .s-signUpBtn': 'submitSignUpForm',
     // $( ".l-signUpBtn" ).on( "click", function() {
     //   $('.signUpDiv').removeClass('hide');
     //   $('.loginDiv').addClass('hide');
