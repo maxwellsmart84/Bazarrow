@@ -8,6 +8,7 @@ import com.theironyard.services.ItemsWantRepository;
 import com.theironyard.services.UserRepository;
 import com.theironyard.util.PasswordHash;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -73,12 +74,7 @@ public class BazarrowControllers {
     }
 
     @RequestMapping(path = "/users", method = RequestMethod.POST)
-    public void createProfile(HttpServletResponse response, String username, String password, String location, String email) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
-        User user = new User();
-        user.username = username;
-        user.password = PasswordHash.createHash(password);
-        user.location = location;
-        user.email = email;
+    public void createProfile(HttpServletResponse response, @RequestBody User user) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
         users.save(user);
         response.sendRedirect("/#profile");
     }
