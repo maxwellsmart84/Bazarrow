@@ -12,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue
     @Column(nullable = false)
-    int id;
+    Integer id;
 
     @Column(nullable = false)
     public String username;
