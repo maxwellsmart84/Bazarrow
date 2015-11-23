@@ -63,7 +63,7 @@ public class BazarrowControllers {
     }
 
     @RequestMapping("/login")
-    public void login(HttpSession session, String username, String password) throws Exception {
+    public void login(HttpSession session, HttpServletResponse response, String username, String password) throws Exception {
         User user = users.findOneByUsername(username);
         if (!PasswordHash.validatePassword(password, user.password)) {
             throw new Exception("Wrong Password");
@@ -71,6 +71,8 @@ public class BazarrowControllers {
         else {
             session.setAttribute("username", username);
         }
+        response.sendRedirect("/#profile");
+
     }
 
     @RequestMapping(path = "/users", method = RequestMethod.POST)
