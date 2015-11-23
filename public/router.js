@@ -30,27 +30,27 @@ module.exports = Backbone.Router.extend({
     });
   },
   homePage: function () {
-    console.log("you've made it to home!!");
-    var loginformHTML = new LoginFormView();
-
+    new LoginFormView();
   },
 
   userPage: function () {
-    router.navigate('profile');
     var userCollection = new UserCollection();
     userCollection.fetch().then(function () {
       var userCollectionView = new UserCollectionView({collection: userCollection});
       // self.$el.find('section').html();
-      self.$el.find('header').html(headerHTML.render().el);
-      self.$el.find('.submit-section').html(formHTML.render().el);
+      // self.$el.find('header').html(headerHTML.render().el);
+      // self.$el.find('.submit-section').html(formHTML.render().el);
     });
     var goodsCollection = new GoodsCollection();
     goodsCollection.fetch().then(function () {
       var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
-      // self.$el.find('section').html();
-      self.$el.find('header').html(headerHTML.render().el);
-      self.$el.find('.submit-section').html(formHTML.render().el);
+    //   // self.$el.find('section').html();
+    //   self.$el.find('header').html(headerHTML.render().el);
+    //   self.$el.find('.submit-section').html(formHTML.render().el);
     });
   },
+  setView: function(view) {
+    // $('.container').html(view);
+  }
 
 });

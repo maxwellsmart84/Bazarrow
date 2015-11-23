@@ -1,45 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var Backbone = require('backbone');
-var $ = require('jquery');
-Backbone.$ = $;
-var _ = require('underscore');
-var tmpl = require('./templates');
-var GoodsModel = require('./goodsModel');
-
-module.exports = Backbone.View.extend({
-  className: 'addItem',
-  model: null, // just here as placeholder, but need a model up on instantiation
-  events: {
-    'submit form': 'submitForm'
-  },
-  initialize: function () {
-    if(!this.model) {
-      this.model = new GoodsModel();
-    }
-  },
-  submitForm: function (event) {
-    event.preventDefault();
-    var newItem = {
-      image: this.$el.find('input[name="item_image"]').val(),
-      title: this.$el.find('input[name="title"]').val(),
-      description: this.$el.find('input[name="description"]').val(),
-    };
-    this.model.set(newItem);
-    this.model.save();
-    this.$el.find('input').val('');
-  },
-  template: _.template(tmpl.goodsForm),
-  render: function () {
-    var markup = this.template(this.model.toJSON());
-    this.$el.html(markup);
-    // in order to call .el off of render we need to return this
-    // bookViewInstance.render().el - yields all markup and data from model
-    return this;
-  }
-});
-
-},{"./goodsModel":4,"./templates":20,"backbone":11,"jquery":12,"underscore":13}],2:[function(require,module,exports){
-var Backbone = require('backbone');
 var GoodsModel = require('./goodsModel');
 
 module.exports = Backbone.Collection.extend({
@@ -47,7 +7,7 @@ module.exports = Backbone.Collection.extend({
   model: GoodsModel
 });
 
-},{"./goodsModel":4,"backbone":11}],3:[function(require,module,exports){
+},{"./goodsModel":3,"backbone":8}],2:[function(require,module,exports){
 var Backbone = require('backbone');
 var Goods = require('./goodsCollection');
 var _ = require('underscore');
@@ -70,7 +30,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./goodsCollection":2,"./goodsModelView":5,"backbone":11,"jquery":12,"underscore":13}],4:[function(require,module,exports){
+},{"./goodsCollection":1,"./goodsModelView":4,"backbone":8,"jquery":9,"underscore":10}],3:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -88,7 +48,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":11}],5:[function(require,module,exports){
+},{"backbone":8}],4:[function(require,module,exports){
 var Backbone = require('backbone');
 var GoodsModel = require('./goodsModel');
 var _ = require('underscore');
@@ -137,101 +97,83 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./goodsModel":4,"./templates":20,"backbone":11,"jquery":12,"underscore":13}],6:[function(require,module,exports){
+},{"./goodsModel":3,"./templates":16,"backbone":8,"jquery":9,"underscore":10}],5:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
 var _ = require('underscore');
-var tmpl = require('./templates');
-
-module.exports = Backbone.View.extend({
-  initialize: function () {},
-  template: _.template(tmpl.goods),
-  render: function () {
-    var markup = this.template({});
-    this.$el.html(markup);
-    // in order to call .el off of render we need to return this
-    // bookViewInstance.render().el - yields all markup and data from model
-    return this;
-  }
-});
-
-},{"./templates":20,"backbone":11,"jquery":12,"underscore":13}],7:[function(require,module,exports){
-var Backbone = require('backbone');
-var $ = require('jquery');
-Backbone.$ = $;
-var _ = require('underscore');
-var LoginFormView = require('./loginFormView');
-var FormView = require('./formView');
-var UserView = require('./userView');
-var GoodsView = require('./goodsView');
-var PostView = require('./postView');
-var UserCollectionView = require('./userCollectionView');
-var GoodsCollectionView = require('./goodsCollectionView');
-var PostCollectionView = require('./postCollectionView');
-var UserCollection = require('./userCollection');
-var GoodsCollection = require('./goodsCollection');
-var PostCollection = require('./postCollection');
+// var LoginFormView = require('./loginFormView');
+// var FormView = require('./formView');
+// var UserView = require('./userView');
+// var GoodsView = require('./goodsView');
+// var PostView = require('./postView');
+// var UserCollectionView = require('./userCollectionView');
+// var GoodsCollectionView = require('./goodsCollectionView');
+// var PostCollectionView = require('./postCollectionView');
+// var UserCollection = require('./userCollection');
+// var GoodsCollection = require('./goodsCollection');
+// var PostCollection = require('./postCollection');
 
 
 module.exports = Backbone.View.extend({
- el: '#layoutView',
- initialize: function () {
-   var self = this;
-   var loginFormHTML = new LoginFormView();
-   var userHTML = new UserView();
-   var formHTML = new FormView();
-   var goodsHTML = new GoodsView();
-   var postHTML = new PostView();
-
-
-// lines 33-52 need to be updated with the content that we need on our page
-
-   var goodsCollection = new GoodsCollection();
-   goodsCollection.fetch().then(function () {
-     var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
-     // self.$el.find('section').html()
-     self.$el.find('.addItemMenu').html(formHTML.render().el);
-     self.$el.find('.itemsList').html(goodsHTML.render().el);
-   });
-
-   var userCollection = new UserCollection();
-   userCollection.fetch().then(function () {
-     var userCollectionView = new UserCollectionView({collection: userCollection});
-     // self.$el.find('section').html()
-     self.$el.find('.myItems').html(formHTML.render().el);
-     self.$el.find('.profileInfo').html(userHTML.render().el);
-   });
-
-   var postCollection = new PostCollection();
-   postCollection.fetch().then(function () {
-     var postCollectionView = new PostCollectionView({collection: postCollection});
-     // self.$el.find('section').html()
-     self.$el.find('.marketList').html(postHTML.render().el);
-     self.$el.find('.addItemMenu').html(headerHTML.render().el);
-
-   });
- }
+//  el: '#layoutView',
+//  initialize: function () {
+//    var self = this;
+//    var loginFormHTML = new LoginFormView();
+//    var userHTML = new UserView();
+//    var formHTML = new FormView();
+//    var goodsHTML = new GoodsView();
+//    var postHTML = new PostView();
+//
+//
+// // lines 33-52 need to be updated with the content that we need on our page
+//
+//    var goodsCollection = new GoodsCollection();
+//    goodsCollection.fetch().then(function () {
+//      var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
+//      // self.$el.find('section').html()
+//      self.$el.find('.addItemMenu').html(formHTML.render().el);
+//      self.$el.find('.itemsList').html(goodsHTML.render().el);
+//    });
+//
+//    var userCollection = new UserCollection();
+//    userCollection.fetch().then(function () {
+//      var userCollectionView = new UserCollectionView({collection: userCollection});
+//      // self.$el.find('section').html()
+//      self.$el.find('.myItems').html(formHTML.render().el);
+//      self.$el.find('.profileInfo').html(userHTML.render().el);
+//    });
+//
+//    var postCollection = new PostCollection();
+//    postCollection.fetch().then(function () {
+//      var postCollectionView = new PostCollectionView({collection: postCollection});
+//      // self.$el.find('section').html()
+//      self.$el.find('.marketList').html(postHTML.render().el);
+//      self.$el.find('.addItemMenu').html(headerHTML.render().el);
+//
+//    });
+//  }
 });
 
-},{"./formView":1,"./goodsCollection":2,"./goodsCollectionView":3,"./goodsView":6,"./loginFormView":8,"./postCollection":14,"./postCollectionView":15,"./postView":18,"./userCollection":21,"./userCollectionView":22,"./userView":25,"backbone":11,"jquery":12,"underscore":13}],8:[function(require,module,exports){
+},{"backbone":8,"jquery":9,"underscore":10}],6:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
 var _ = require('underscore');
 var tmpl = require('./templates');
 var UserModel = require('./userModel');
-var NewUserModel = require('./newUserModel');
-
+// var NewUserModel = require('./newUserModel');
 
 module.exports = Backbone.View.extend({
-  className: 'addLogin',
-  model: null, // just here as placeholder, but need a model up on instantiation
+  el: '.loginSection',
+  className: '',
+  template: _.template(tmpl.userForm),
+  // model: null, // just here as placeholder, but need a model up on instantiation
   events: {
     'click .l-signUpBtn': 'signUpFormShow',
     'click .l-loginBtn': 'submitLoginForm',
-    'click .s-loginBtn': 'loginFormHide',
-    'click .s-signUpBtn': 'submtLoginForm',
+    'click .s-loginBtn': 'loginFormShow',
+    'click .s-signUpBtn': 'submitSignUpForm',
     // $( ".l-signUpBtn" ).on( "click", function() {
     //   $('.signUpDiv').removeClass('hide');
     //   $('.loginDiv').addClass('hide');
@@ -239,14 +181,15 @@ module.exports = Backbone.View.extend({
   initialize: function () {
     if(!this.model) {
       this.model = new UserModel();
-      this.model2 = new NewUserModel();
+      // this.model2 = new NewUserModel();
     }
+    this.render();
   },
-  signUpFormHide: function (event){
+  signUpFormShow: function (event){
     $('.signUpDiv').removeClass('hide');
     $('.loginDiv').addClass('hide');
   },
-  loginFormHide: function (event){
+  loginFormShow: function (event){
     $('.signUpDiv').addClass('hide');
     $('.loginDiv').removeClass('hide');
   },
@@ -257,26 +200,26 @@ module.exports = Backbone.View.extend({
       location: this.$el.find('input[name="signUpLocation"]').val(),
       email: this.$el.find('input[name="signUpEmail"]').val(),
       password: this.$el.find('input[name="signUpPassword"]').val()
+
     };
-    this.model.set(returnUser);
     this.model.save();
     this.$el.find('input').val('');
   },
 
   submitSignUpForm: function (event) {
     event.preventDefault();
+    console.log('is this working?');
     var newUser ={
       image: this.$el.find('input[name="signUpAvatar"]').val(),
       username: this.$el.find('input[name="signUpUsername"]').val(),
       location: this.$el.find('input[name="signUpLocation"]').val(),
       email: this.$el.find('input[name="signUpEmail"]').val(),
-      password: this.$el.find('input[name="signUpPassword"]').val()
+      password: this.$el.find('input[name="signUpPassword"]').val(),
     };
     this.model.set(newUser);
     this.model.save();
     this.$el.find('input').val('');
   },
-  template: _.template(tmpl.userForm),
   render: function () {
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
@@ -286,7 +229,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./newUserModel":10,"./templates":20,"./userModel":23,"backbone":11,"jquery":12,"underscore":13}],9:[function(require,module,exports){
+},{"./templates":16,"./userModel":19,"backbone":8,"jquery":9,"underscore":10}],7:[function(require,module,exports){
 var $ = require('jquery');
 var Backbone = require('backbone');
 var LayoutView = require('./layoutView');
@@ -324,28 +267,14 @@ $( ".homeBtn" ).on( "click", function() {
 var layoutView = require('./layoutView');
 
 $(function () {
- new layoutView();
+  // new LayoutView();
+  new Router();
+  Backbone.history.start();
+  // new LoginFormView();
+  // new layoutView();
 });
 
-},{"./layoutView":7,"./router":19,"backbone":11,"jquery":12}],10:[function(require,module,exports){
-var Backbone = require('backbone');
-
-module.exports = Backbone.Model.extend({
-  urlRoot: '/create-user',
-  idAttribute: 'id',
-  defaults: function (){
-    return {
-      image: "",
-      username: "km",
-      rating: "5 stars",
-      location: "Charleston, SC"
-    };
-  },
-  initialize: function () {
-  }
-});
-
-},{"backbone":11}],11:[function(require,module,exports){
+},{"./layoutView":5,"./router":15,"backbone":8,"jquery":9}],8:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.3
 
@@ -2243,7 +2172,7 @@ module.exports = Backbone.Model.extend({
 }));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":12,"underscore":13}],12:[function(require,module,exports){
+},{"jquery":9,"underscore":10}],9:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -11455,7 +11384,7 @@ return jQuery;
 
 }));
 
-},{}],13:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -13005,7 +12934,7 @@ return jQuery;
   }
 }.call(this));
 
-},{}],14:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 var Backbone = require('backbone');
 var PostModel = require('./postModel');
 
@@ -13014,7 +12943,7 @@ module.exports = Backbone.Collection.extend({
   model: PostModel
 });
 
-},{"./postModel":16,"backbone":11}],15:[function(require,module,exports){
+},{"./postModel":13,"backbone":8}],12:[function(require,module,exports){
 var Backbone = require('backbone');
 var Post = require('./postCollection');
 var _ = require('underscore');
@@ -13037,7 +12966,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./postCollection":14,"./postModelView":17,"backbone":11,"jquery":12,"underscore":13}],16:[function(require,module,exports){
+},{"./postCollection":11,"./postModelView":14,"backbone":8,"jquery":9,"underscore":10}],13:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -13054,7 +12983,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":11}],17:[function(require,module,exports){
+},{"backbone":8}],14:[function(require,module,exports){
 var Backbone = require('backbone');
 var PostModel = require('./postModel');
 var _ = require('underscore');
@@ -13103,26 +13032,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./postModel":16,"./templates":20,"backbone":11,"jquery":12,"underscore":13}],18:[function(require,module,exports){
-var Backbone = require('backbone');
-var $ = require('jquery');
-Backbone.$ = $;
-var _ = require('underscore');
-var tmpl = require('./templates');
-
-module.exports = Backbone.View.extend({
-  initialize: function () {},
-  template: _.template(tmpl.posts),
-  render: function () {
-    var markup = this.template({});
-    this.$el.html(markup);
-    // in order to call .el off of render we need to return this
-    // bookViewInstance.render().el - yields all markup and data from model
-    return this;
-  }
-});
-
-},{"./templates":20,"backbone":11,"jquery":12,"underscore":13}],19:[function(require,module,exports){
+},{"./postModel":13,"./templates":16,"backbone":8,"jquery":9,"underscore":10}],15:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 var _ = require('underscore');
@@ -13155,32 +13065,32 @@ module.exports = Backbone.Router.extend({
     });
   },
   homePage: function () {
-    console.log("you've made it to home!!");
-    var loginformHTML = new LoginFormView();
-
+    new LoginFormView();
   },
 
   userPage: function () {
-    router.navigate('profile');
     var userCollection = new UserCollection();
     userCollection.fetch().then(function () {
       var userCollectionView = new UserCollectionView({collection: userCollection});
       // self.$el.find('section').html();
-      self.$el.find('header').html(headerHTML.render().el);
-      self.$el.find('.submit-section').html(formHTML.render().el);
+      // self.$el.find('header').html(headerHTML.render().el);
+      // self.$el.find('.submit-section').html(formHTML.render().el);
     });
     var goodsCollection = new GoodsCollection();
     goodsCollection.fetch().then(function () {
       var goodsCollectionView = new GoodsCollectionView({collection: goodsCollection});
-      // self.$el.find('section').html();
-      self.$el.find('header').html(headerHTML.render().el);
-      self.$el.find('.submit-section').html(formHTML.render().el);
+    //   // self.$el.find('section').html();
+    //   self.$el.find('header').html(headerHTML.render().el);
+    //   self.$el.find('.submit-section').html(formHTML.render().el);
     });
   },
+  setView: function(view) {
+    // $('.container').html(view);
+  }
 
 });
 
-},{"./goodsCollection":2,"./goodsCollectionView":3,"./layoutView":7,"./loginFormView":8,"./postCollection":14,"./postCollectionView":15,"./userCollection":21,"./userCollectionView":22,"backbone":11,"jquery":12,"underscore":13}],20:[function(require,module,exports){
+},{"./goodsCollection":1,"./goodsCollectionView":2,"./layoutView":5,"./loginFormView":6,"./postCollection":11,"./postCollectionView":12,"./userCollection":17,"./userCollectionView":18,"backbone":8,"jquery":9,"underscore":10}],16:[function(require,module,exports){
 module.exports = {
   header: [
     "<h1>hello world</h1>"
@@ -13217,22 +13127,27 @@ module.exports = {
     "<h1>Looking for: <span class = '.lookingFor'></span></h1>",
   ].join(""),
   userForm: [
+    '<div class = loginDiv>',
     '<h1><span class="titleSpan">Bazarrow</span></h1>',
     '<form class="loginForm" action="index.html" method="post">',
-      "<input type='text' name='loginName' placeholder='Username'></input>",
-      '<input type="password" class="form-control loginPassword" name="loginPassword" value="" placeholder="Password>',
-      '<button type="button" class="btn btn-secondary l-loginBtn">Login</button>',
+      "<input class='form-control loginUsername' type='text' name='loginName' placeholder='Username'></input>",
+      '<input type="password" class="form-control loginPassword" name="loginPassword" value="" placeholder="Password">',
+      '<a href="/#profile"><button type="button" class="btn btn-secondary l-loginBtn">Login</button></a>',
       '<button type="button" class="btn btn-secondary l-signUpBtn">Sign Up</button>',
     "</form>",
-    '<form class="signUpForm hide" action="index.html" method="post">',
-      '<input type="text" class="form-control signUpUsername" name="signUpUserName"  placeholder="Username">',
-      '<input type="text" class="form-control signUpEmail" name="signUpEmail"  placeholder="Email">',
-      '<input type="password" class="form-control signUpPassword" name="signUpPassword"  placeholder="Password">',
-      '<input type="text" class="form-control signUpAvatar" name="signUpAvatar"  placeholder="Profile Picture">',
-      '<input type="text" class="form-control signUpLocation" name="signUpLocation"  placeholder="Location">',
-      '<button type="button" class="btn btn-secondary s-loginBtn">Login</button>',
-      '<button type="button" class="btn btn-secondary s-signUpBtn">Sign Up</button>',
-    '</form>'
+    '</div>',
+    '<div class= "signUpDiv hide">',
+    '<h1><span class="titleSpan">Bazarrow</span></h1>',
+      '<form class="signUpForm" action="index.html" method="post">',
+        '<input type="text" class="form-control signUpUsername" name="signUpUsername"  placeholder="Username">',
+        '<input type="text" class="form-control signUpEmail" name="signUpEmail"  placeholder="Email">',
+        '<input type="password" class="form-control signUpPassword" name="signUpPassword"  placeholder="Password">',
+        '<input type="text" class="form-control signUpAvatar" name="signUpAvatar"  placeholder="Profile Picture">',
+        '<input type="text" class="form-control signUpLocation" name="signUpLocation"  placeholder="Location">',
+        '<button type="button" class="btn btn-secondary s-loginBtn">Login</button>',
+        '<a href="/#profile"><button type="button" class="btn btn-secondary s-signUpBtn">Sign Up</button></a>',
+        '</form>',
+    '</div>'
   ].join(""),
   goodsForm: [
      '<form class="addItemForm" action="index.html" method="post">',
@@ -13252,17 +13167,17 @@ module.exports = {
   ],
 };
 
-},{}],21:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 var Backbone = require('backbone');
 var UserModel = require('./userModel');
-var NewUserModel = require('./newUserModel');
+
 
 module.exports = Backbone.Collection.extend({
   url: '/users',
   model: UserModel
 });
 
-},{"./newUserModel":10,"./userModel":23,"backbone":11}],22:[function(require,module,exports){
+},{"./userModel":19,"backbone":8}],18:[function(require,module,exports){
 var Backbone = require('backbone');
 var User = require('./userCollection');
 var _ = require('underscore');
@@ -13285,7 +13200,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./userCollection":21,"./userModelView":24,"backbone":11,"jquery":12,"underscore":13}],23:[function(require,module,exports){
+},{"./userCollection":17,"./userModelView":20,"backbone":8,"jquery":9,"underscore":10}],19:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -13303,7 +13218,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":11}],24:[function(require,module,exports){
+},{"backbone":8}],20:[function(require,module,exports){
 var Backbone = require('backbone');
 var UserModel = require('./userModel');
 var _ = require('underscore');
@@ -13330,23 +13245,4 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":20,"./userModel":23,"backbone":11,"jquery":12,"underscore":13}],25:[function(require,module,exports){
-var Backbone = require('backbone');
-var $ = require('jquery');
-Backbone.$ = $;
-var _ = require('underscore');
-var tmpl = require('./templates');
-
-module.exports = Backbone.View.extend({
-  initialize: function () {},
-  template: _.template(tmpl.user),
-  render: function () {
-    var markup = this.template({});
-    this.$el.html(markup);
-    // in order to call .el off of render we need to return this
-    // bookViewInstance.render().el - yields all markup and data from model
-    return this;
-  }
-});
-
-},{"./templates":20,"backbone":11,"jquery":12,"underscore":13}]},{},[9]);
+},{"./templates":16,"./userModel":19,"backbone":8,"jquery":9,"underscore":10}]},{},[7]);

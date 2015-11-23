@@ -35,5 +35,9 @@ $( ".homeBtn" ).on( "click", function() {
 var layoutView = require('./layoutView');
 
 $(function () {
- new layoutView();
+  // new LayoutView();
+  new Router();
+  Backbone.history.start();
+  // new LoginFormView();
+  // new layoutView();
 });
